@@ -9,7 +9,7 @@ describe 'author_show_page' do
 
     visit "/authors/#{author_1.id}"
 
-    save_and_open_page
+    # save_and_open_page
     # require 'pry'; binding.pry
     expect(page).to have_content("#{author_1.name}")
     expect(page).to have_content("Title: #{book_1.title}")
@@ -18,6 +18,6 @@ describe 'author_show_page' do
     expect(page).to have_content("Title: #{book_2.title}")
     expect(page).to have_content("Length: #{book_2.length}")
     expect(page).to have_content("Year: #{book_2.year}")
-    expect(page).to have_content("Co-Author: #{author_2.name}")
+    expect(page).to have_content("Co-Author(s):\n#{author_2.name}")
   end
 end
