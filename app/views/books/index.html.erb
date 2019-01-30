@@ -4,4 +4,7 @@
   <h2>Title: <%= book.title %> </h2>
   <h2>Length: <%= book.length %> </h2>
   <h2>Year: <%= book.year %> </h2>
+  <h2>Authors: <% book.authors.each do  |author| %></h2>
+    <h2><%= author.name %></h2>
+  <% end %>
 <% end %>
