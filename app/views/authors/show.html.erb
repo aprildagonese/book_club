@@ -4,7 +4,10 @@
   <h2>Title: <%= book.title %> </h2>
   <h2>Length: <%= book.length %> </h2>
   <h2>Year: <%= book.year %> </h2>
-  <h2>Co-author(s): <% book.authors.each do |book_author| %></h2>
-    <h2><%= book_author.name  if @author.name != book_author.name%></h2>
+
+  <% if book.authors.count > 1 %> <h2>Co-Author(s):
+    <% book.authors.each do |book_author| %></h2>
+      <h2><%= book_author.name  if @author.name != book_author.name%></h2>
+      <% end %>
   <% end %>
 <% end %>
