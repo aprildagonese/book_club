@@ -9,7 +9,7 @@ describe 'author_show_page' do
 
     visit "/authors/#{author_1.id}"
 
-    save_and_open_page
+    # save_and_open_page
     # require 'pry'; binding.pry
     expect(page).to have_content("#{author_1.name}")
     expect(page).to have_content("Title: #{book_1.title}")
@@ -22,7 +22,16 @@ describe 'author_show_page' do
     expect(page).to have_content("Year: #{book_2.year}")
     expect(page).to have_content("Co-Author(s):\n#{author_2.name}")
     expect(page).to have_xpath("//img[contains(@src,'#{File.basename(book_2.cover_image)}')]")
+  end
 
+  it "user_doesn't_see_authors_name_under_coauthored_books" do
+    author_1 = Author.create(name: "Jon Doe")
+    author_2 = Author.create(name: "Jane Doe")
+    book_2 = Book.create(title: "Book 2 Title", length: 222, year: 2222, authors: [author_1, author_2], cover_image: "http://bookriotcom.c.presscdn.com/wp-content/uploads/2014/08/HP_hc_new_2-e1407533769415.jpeg")
 
+    visit "/authors/#{author_1.id}"
+    # visit show_path(author_1)
+
+    expect(page).to have_content("#{author_1.name}", maximum: 1)
   end
 end
