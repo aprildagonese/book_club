@@ -1,0 +1,10 @@
+<h1><%= @author.name %></h1>
+
+<% @author.books.each do |book| %>
+  <h2>Title: <%= book.title %> </h2>
+  <h2>Length: <%= book.length %> </h2>
+  <h2>Year: <%= book.year %> </h2>
+  <h2>Co-author(s): <% book.authors.each do |book_author| %></h2>
+    <h2><%= book_author.name  if @author.name != book_author.name%></h2>
+  <% end %>
+<% end %>
