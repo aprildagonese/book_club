@@ -10,4 +10,6 @@
       <h2><%= book_author.name  if @author.name != book_author.name%></h2>
       <% end %>
   <% end %>
+
+  <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
 <% end %>

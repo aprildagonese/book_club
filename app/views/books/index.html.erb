@@ -7,4 +7,5 @@
   <h2>Author(s): <% book.authors.each do |author| %> </h2>
   <h2> <%= author.name %> </h2>
   <% end %>
+  <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
 <% end %>
