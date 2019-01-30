@@ -1,7 +1,7 @@
 # README
-test change
+
 ## Links
-Waffle.io: https://waffle.io/aprildagonese/book-club
+Waffle.io: https://waffle.io/aprildagonese/book_club
 
 ## DTR: Define the Relationship
 Group Member Names: Rene Casco and April Dagonese
