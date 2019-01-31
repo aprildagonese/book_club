@@ -18,5 +18,12 @@ RSpec.describe "user creates a new review under book-reviews", type: :feature do
     new_review = Review.last
 
     expect(current_path).to eq(book_path(book_1))
+
+    visit book_path(book_1)
+
+    expect(page).to have_content( "Best Book Ever" )
+    expect(page).to have_content( "I just can't explain how much I loved this book" )
+    expect(page).to have_content( "Book 1 Title" )
+    expect(page).to have_content( 5 )
   end
 end
