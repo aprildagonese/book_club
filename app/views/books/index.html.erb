@@ -1,5 +1,7 @@
 <h1>All Books</h1>
 
+<%= link_to 'Add a New Book', new_book_path %>
+
 <% @books.each do |book| %>
 <section id="book-<%=book.id%>">
   <h2>Title: <%= book.title %> </h2>

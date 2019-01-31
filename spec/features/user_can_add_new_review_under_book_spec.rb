@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "user creates a new review under book-reviews", type: :feature do
+RSpec.describe "new book reviews", type: :feature do
   it "can create a new review" do
     author_1 = Author.create(name: "Jon Doe")
     book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
