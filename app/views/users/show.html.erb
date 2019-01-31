@@ -7,8 +7,8 @@
   <h2>Title: <%= review.title %> </h2>
   <h2>Description: <%= review.description %> </h2>
   <h2>Rating: <%= review.rating %> </h2>
-  <h2>Review Dater: <%= review.created_at %>
-    <p><img src=" <%= @review.book.cover_image %>" alt=" <%= @review.book.title %> image"></p>
+  <h2>Review Date: <%= review.created_at %>
+    <p><img src=" <%= review.book.cover_image %>" alt=" <%= review.book.title %> image"></p>
 <% end %>
 
-<%= link_to 'Sort', new_post_path %> 
+<%= link_to 'Sort', user_path %>

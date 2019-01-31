@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Review, type: :model do
+RSpec.describe User, type: :model do
   describe 'relationships' do
     it {should have_many :reviews}
   end
