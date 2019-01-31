@@ -1,5 +1,4 @@
 <h1> <%= @book.title %></h1>
-
 <h2>Title: <%= @book.title %> </h2>
 <h2>Length: <%= @book.length %> </h2>
 <h2>Year: <%= @book.year %> </h2>
@@ -9,10 +8,9 @@
 <p><img src=" <%= @book.cover_image %>" alt=" <%= @book.title %> image"></p>
 
 <h1>Reviews</h1>
-
 <% @book.reviews.each do |review| %>
-  <h2>Description: <%= review.description %> </h2>
-  <h2>Text: <%= review.text %> </h2>
+  <h2>Description: <%= review.title %> </h2>
+  <h2>Text: <%= review.description %> </h2>
   <h2>Rating: <%= review.rating %> </h2>
-  <h2>User: <%= review.user %> </h2>
+  <h2>User: <%= review.user.name %> </h2>
 <% end %>

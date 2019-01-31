@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :books
-  belongs_to :users
+  belongs_to :book
+  belongs_to :user
 
   validates_presence_of :title, :user_id, :description, :book_id
   validates :rating, presence: true, numericality: {

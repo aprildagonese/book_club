@@ -23,11 +23,15 @@ describe 'book_show_page' do
     expect(page).to_not have_xpath("//img[contains(@src,'#{File.basename(book_2.cover_image)}')]")
   end
 
-  xit "user_can_see_review_data" do
+  it "user_can_see_review_data" do
     author_1 = Author.create(name: "Jon Doe")
     book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
-    review_1 = Review.create(description: "Review 1", text: "I liked this book", user: "April", rating: 5, book: book_1)
-    review_2 = Review.create(description: "Review 2", text: "I didn't like this book", user: "Rene", rating: 1, book: book_1)
+    april = User.create(name: "April")
+    rene = User.create(name: "Rene")
+    review_1 = Review.create(title: "Review 1", description: "I liked this book", user: april, rating: 5, book: book_1)
+    review_2 = Review.create(title: "Review 2", description: "I didn't like this book", user: rene, rating: 1, book: book_1)
+
+    visit "/books/#{book_1.id}"
 
     expect(page).to have_content( "Review 1" )
     expect(page).to have_content( "I liked this book" )
@@ -38,7 +42,7 @@ describe 'book_show_page' do
     expect(page).to have_content( "I didn't like this book" )
     expect(page).to have_content( "Rene" )
     expect(page).to have_content( 1 )
-  end 
+  end
 
 
 end
