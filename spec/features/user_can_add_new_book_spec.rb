@@ -76,4 +76,21 @@ describe 'on the new book page' do
     end
   end
 
+  context 'when no book cover image is provided' do
+    it 'stores a default image' do
+      visit new_book_path
+
+      fill_in :book_title, with: "Sense and Sensibility"
+      fill_in :book_length, with: 352
+      fill_in :book_year, with: 1811
+      fill_in :book_authors, with: "Jane Austen"
+
+      click_on "Create Book"
+
+      expected = "https://rmnetwork.org/newrmn/wp-content/uploads/2011/11/generic-book-cover.jpg"
+
+      expect(page).to have_xpath("//img[contains(@src,'#{File.basename(expected)}')]")
+    end
+  end
+
 end

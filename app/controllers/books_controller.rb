@@ -12,7 +12,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(merged_params)
     @book.authors = params[:book][:authors].split(",").map do |author|
       Author.find_or_create_by(name: author.titleize.strip)
     end
@@ -21,6 +21,16 @@ class BooksController < ApplicationController
     else
       @authors = Author.all
       render :new
+    end
+  end
+
+  def merged_params
+    default_image = {:cover_image=>"https://rmnetwork.org/newrmn/wp-content/uploads/2011/11/generic-book-cover.jpg"}
+
+    if params[:book][:cover_image] == ""
+      book_params.merge(default_image)
+    else
+      book_params
     end
   end
 
