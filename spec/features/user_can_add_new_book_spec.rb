@@ -38,7 +38,7 @@ describe 'on the new book page' do
 
     click_on "Create Book"
     new_book = Book.last
-    expected = "Author(s): #{new_book.authors.pluck(:name).join(", ")}"
+    expected = "Author(s): #{new_book.authors.pluck(:name).join(" ")}"
 
     expect(current_path).to eq(book_path(new_book))
 
