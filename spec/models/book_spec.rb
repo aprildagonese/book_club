@@ -21,10 +21,10 @@ RSpec.describe Book, type: :model do
         author_2 = Author.create(name: "Jane Doe")
         book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
         book_2 = Book.create(title: "Book 2 Title", length: 222, year: 2222, authors: [author_1, author_2], cover_image: "http://bookriotcom.c.presscdn.com/wp-content/uploads/2014/08/HP_hc_new_2-e1407533769415.jpeg")
-        user = User.create(name: "April")
-        review_1 = book_1.reviews.create(title: "Good book", description: "Liked it", rating: 4, user: user)
-        review_2 = book_1.reviews.create(title: "Fine book", description: "Liked it enough", rating: 3, user: user)
-        review_3 = book_2.reviews.create(title: "Boring book", description: "Didn't like it", rating: 2, user: user)
+        april = User.create(name: "April")
+        review_1 = book_1.reviews.create(title: "Good book", description: "Liked it", rating: 4, user: april)
+        review_2 = book_1.reviews.create(title: "Fine book", description: "Liked it enough", rating: 3, user: april)
+        review_3 = book_2.reviews.create(title: "Boring book", description: "Didn't like it", rating: 2, user: april)
 
         expect(Review.count).to eq(3)
 

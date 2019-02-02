@@ -76,6 +76,22 @@ describe 'on the new book page' do
     end
   end
 
+  context 'when the author does not exist in the database' do
+    it 'creates a new author' do
+      visit new_book_path
+
+      fill_in :book_title, with: "Sense and Sensibility"
+      fill_in :book_length, with: 352
+      fill_in :book_year, with: 1811
+      fill_in :book_cover_image, with: "https://images.gr-assets.com/books/1176166955l/600331.jpg"
+      fill_in :book_authors, with: "Jane Austen"
+
+      click_on "Create Book"
+
+      expect(Author.count).to eq(1)
+    end
+  end
+
   context 'when no book cover image is provided' do
     it 'stores a default image' do
       visit new_book_path

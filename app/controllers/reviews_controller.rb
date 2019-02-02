@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
     @book = Book.find(params[:book_id])
     @user = User.find_or_create_by(name: review_params[:user].titleize)
     @review = @book.reviews.create(title: review_params[:title], user: @user, rating: review_params[:rating], description: review_params[:description] )
+
     if @review.save
       redirect_to book_path(@book)
     else

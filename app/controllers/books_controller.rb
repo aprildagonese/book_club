@@ -19,7 +19,6 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to book_path(@book)
     else
-      @authors = Author.all
       render :new
     end
   end
