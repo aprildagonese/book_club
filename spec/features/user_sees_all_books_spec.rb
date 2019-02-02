@@ -51,17 +51,17 @@ describe 'books_index' do
 
 
     review_1 = Review.create(title: "Review 1", description: "I liked this book", user: april, rating: 4, book: book_1)
-    review_2 = Review.create(title: "Review 2", description: "I didn't like this book", user: rene, rating: 1, book: book_1)
-    review_3 = Review.create(title: "Review 3", description: "Wow!", user: april, rating: 3, book: book_2)
-    review_4 = Review.create(title: "Review 4", description: "As good as it gets!", user: april, rating: 3, book: book_2)
-    review_5 = Review.create(title: "Review 5", description: "Mixed feelings", user: april, rating: 3, book: book_2)
-    review_6 = Review.create(title: "Review 7", description: "dfdfgsgfdgsggs", user: april, rating: 3, book: book_2)
-    review_7 = Review.create(title: "Review 8", description: "gsfgfgdsgsgfsgs", user: april, rating: 3, book: book_2)
-    review_8 = Review.create(title: "Review 9", description: "sghsghhdfhdhdfhsghf thshh", user: april, rating: 3, book: book_2)
-    review_9 = Review.create(title: "Review 10", description: "hhadgckdh lhflhfjklae", user: april, rating: 3, book: book_2)
-    review_10 = Review.create(title: "Review 11", description: ";kdhualhfjlaf jhfk", user: april, rating: 3, book: book_2)
-    review_11 = Review.create(title: "Review 12", description: "jhef ljDFH LKHDLjkhd", user: april, rating: 3, book: book_2)
-    review_12 = Review.create(title: "Review 13", description: "akdjfhwq78fhndjkulyrh jkdhk", user: april, rating: 3, book: book_2)
+    review_2 = Review.create(title: "Review 2", description: "so so", user: rene, rating: 1, book: book_1)
+    review_3 = Review.create(title: "Review 3", description: "Wow!", user: ian, rating: 4, book: book_2)
+    review_4 = Review.create(title: "Review 4", description: "As good as it gets!", user: rene, rating: 5, book: book_2)
+    review_5 = Review.create(title: "Review 5", description: "Mixed feelings", user: april, rating:5 , book: book_3)
+    review_6 = Review.create(title: "Review 7", description: "dfdfgsgfdgsggs", user: april, rating: 2, book: book_4)
+    review_7 = Review.create(title: "Review 8", description: "gsfgfgdsgsgfsgs", user: april, rating: 1, book: book_4)
+    review_8 = Review.create(title: "Review 9", description: "sgd hdfhsghf thshh", user: april, rating: 3, book: book_5)
+    review_9 = Review.create(title: "Review 10", description: "hhaddh lhflhfjklae", user: april, rating: 4, book: book_6)
+    review_10 = Review.create(title: "Review 11", description: ";kdhualhfjlajhfk", user: april, rating: 5, book: book_6)
+    review_11 = Review.create(title: "Review 12", description: "ef lDFH LKHDLjkhd", user: april, rating: 3, book: book_7)
+    review_12 = Review.create(title: "Review 13", description: "akdjkulyrh jkdhk", user: april, rating: 3, book: book_8)
 
     visit "/books"
     # save_and_open_page
@@ -74,13 +74,13 @@ describe 'books_index' do
         expect(page).to have_content("Author(s):\nJane Doe")
       end
       within ".statistics-column-2" do
-        expect(page).to have_content("Top Rated Books")
+        expect(page).to have_content("Lowest Rated Books")
         expect(page).to have_content("Length: 111")
         expect(page).to have_content("Year: 1111")
         expect(page).to have_content("Author(s):\nJane Doe")
       end
       within ".statistics-column-3" do
-        expect(page).to have_content("Top Rated Books")
+        expect(page).to have_content("Users With Most Reviews")
         expect(page).to have_content("Length: 111")
         expect(page).to have_content("Year: 1111")
         expect(page).to have_content("Author(s):\nJane Doe")
