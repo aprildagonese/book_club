@@ -5,12 +5,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    book = Book.find(params[:book_id])
-    user = User.create(name: params[:review][:user])
-    review = book.reviews.new(review_params)
-    review.user = user
-    review.save
-    redirect_to book_path(book)
+    @book = Book.find(params[:book_id])
+    @user = User.find_or_create_by(name: review_params[:user].titleize)
+    @review = @book.reviews.create(title: review_params[:title], user: @user, rating: review_params[:rating], description: review_params[:description] )
+    if @review.save
+      redirect_to book_path(@book)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -35,6 +37,6 @@ class ReviewsController < ApplicationController
   private
 
     def review_params
-      params.require(:review).permit(:title, :description, :rating)
+      params.require(:review).permit(:title, :description, :rating, :user)
     end
   end

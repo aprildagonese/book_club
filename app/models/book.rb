@@ -6,4 +6,6 @@ class Book < ApplicationRecord
   validates_presence_of :title, :year, :authors, :cover_image
   validates :length, presence: true, numericality: {
     greater_than_or_equal_to: 0 }
+  validates :title, uniqueness: { case_sensitive: false }
+
 end
