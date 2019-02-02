@@ -16,12 +16,12 @@ describe "on an author show page" do
 
       expect(current_path).to eq(books_path)
       expect(Author.count).to eq(1)
-      expect(Book.count).to eq(1)
+      expect(Book.count).to eq(0)
     end
   end
 
   context "when a book has two authors" do
-    it "user can delete one author, but book remains" do
+    it "user deletes book, but other author remains" do
       author_1 = Author.create(name: "Jon Doe")
       author_2 = Author.create(name: "Jane Doe")
       book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
@@ -35,7 +35,7 @@ describe "on an author show page" do
 
       expect(current_path).to eq(books_path)
       expect(Author.count).to eq(1)
-      expect(Book.count).to eq(2)
+      expect(Book.count).to eq(1)
     end
   end
 
