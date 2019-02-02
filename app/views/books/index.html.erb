@@ -8,8 +8,23 @@
   <h2>Length: <%= book.length %> </h2>
   <h2>Year: <%= book.year %> </h2>
   <h2>Author(s): <% book.authors.each do |author| %> </h2>
-  <h2> <%= author.name %> </h2>
+    <h2> <%= author.name %> </h2>
   <% end %>
   <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
 </section>
 <% end %>
+<footer class ="statistics-footer">
+  <<div class="statistics-column-1">
+    <<h4 class="column_title">Top Rated Books</h4>
+    
+  </div>
+  <div class="statistics-column-2">
+    <h4 class="column_title">Lowest Rated Books</h4>
+
+  </div>
+  <<div class="statistics-column-3">
+    <h4 class="column_title">"Users With Most Reviews</h4>
+
+  </div>
+
+</footer>
