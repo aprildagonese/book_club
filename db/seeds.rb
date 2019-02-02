@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+pride_and_prejudice = Book.create(title: "Pride and Prejudice", year: 1813, length: 432, author: "Jane Austen", cover_image: "https://images-na.ssl-images-amazon.com/images/I/51sOyMmEYBL._SX310_BO1,204,203,200_.jpg")
+good_omens = Book.create(title: "Good Omens", year: 1990, length: 288, author: ["Terry Pratchett, Neil Gaiman", cover_image: "https://images-na.ssl-images-amazon.com/images/I/81Ig%2Br7RTKL.jpg")
+sense_and_sensibility = Book.create(title: "Sense and Sensibility", year: 1811, length: 352, author: "Jane Austen", cover_image: "https://images.gr-assets.com/books/1176166955l/600331.jpg")

@@ -1,3 +1,11 @@
+<% if @review.errors %>
+<ul id="errors">
+  <% @review.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
 <%= form_for [@book, @review] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>

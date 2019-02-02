@@ -1,0 +1,26 @@
+<% if @book.errors %>
+<ul id="errors">
+  <% @book.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<%= form_for @book do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :length %>
+  <%= f.number_field :length %>
+
+  <%= f.label :year %>
+  <%= f.number_field :year %>
+
+  <%= f.label :cover_image%>
+  <%= f.text_field :cover_image %>
+
+  <%= f.label :authors %>
+  <%= f.text_field :authors %>
+
+  <%= f.submit %>
+<% end %>
