@@ -62,10 +62,12 @@ describe 'author show page' do
 
       within "#book-#{@book_1.id}" do
         expect(page).to have_content("review this book!")
+        expect(page).to have_link("review this book!", href: new_book_review_path(@book_1))
       end
 
       within "#book-#{@book_2.id}" do
         expect(page).to have_content("review this book!")
+        expect(page).to have_link("review this book!", href: new_book_review_path(@book_2))
       end
     end
   end
