@@ -16,6 +16,7 @@ RSpec.describe Book, type: :model do
   end
 
   describe 'intance methods' do
+
     context "deleting a book" do
       it "should delete the book's reviews" do
         author_1 = Author.create(name: "Jon Doe")
@@ -36,6 +37,19 @@ RSpec.describe Book, type: :model do
       end
     end
 
+    context "generating statistics for books index page " do
+      it "should calculate the average rating for a book" do
+        author_1 = Author.create(name: "John Smith")
+        book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg", authors: [author_1])
+        april = User.create(name: "April")
+        rene = User.create(name: "Rene")
+        jennica = User.create(name: "Jennica")
+        book_1.reviews.create(title: "Review 1", description: "I liked this book", user: april, rating: 4)
+        book_1.reviews.create(title: "Review 2", description: "so so", user: rene, rating: 3)
+        book_1.reviews.create(title: "Review 3", description: "Wow!", user: jennica, rating: 5)
 
+        expect(book_1.average_rating).to eq(4)
+      end
+    end
   end
 end

@@ -82,7 +82,7 @@ describe 'books_index' do
       end
       within ".statistics-column-3" do
         expect(page).to have_content("Users With Most Reviews")
-        expect(page).to have_content("Jannica:\n4")
+        expect(page).to have_content("Jennica:\n4")
         expect(page).to have_content("April:\n3")
         expect(page).to have_content("Rene>\n:3")
       end
