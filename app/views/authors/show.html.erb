@@ -2,23 +2,23 @@
 
 <% @author.books.each do |book| %>
   <section id="book-<%=book.id%>">
-  <h2>Title: <%= link_to book.title, book_path(book) %></h2>
-  <h2>Length: <%= book.length %> </h2>
-  <h2>Year: <%= book.year %> </h2>
-  <% if book.authors.count > 1 %> <h2>Co-Author(s):
-    <% book.authors.each do |book_author| %></h2>
-      <h2><%= book_author.name  if @author.name != book_author.name%></h2>
-      <% end %>
-  <% end %>
-  <% if book.reviews.count > 0 %> <h2> Highest Review:
-    <% review = book.highest_review(book.reviews) %></h2>
-    <h2>Title: <%= review.title %></h2>
-    <h2>Description: <%= review.description %></h2>
-    <h2>Rating: <%= review.rating %></h2>
-    <h2>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></h2>
-  <% else %> <h2> Be the first to <%= link_to 'review this book!', new_book_review_path(book) %></h2>
-  <% end %>
-  <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
+    <h2>Title: <%= link_to book.title, book_path(book) %></h2>
+    <h2>Length: <%= book.length %> </h2>
+    <h2>Year: <%= book.year %> </h2>
+    <% if book.authors.count > 1 %> <h2>Co-Author(s):
+      <% book.authors.each do |book_author| %></h2>
+        <h2><%= book_author.name  if @author.name != book_author.name%></h2>
+        <% end %>
+    <% end %>
+    <% if book.reviews.count > 0 %> <h2> Highest Review:
+      <% review = book.highest_review(book.reviews) %></h2>
+      <h2>Title: <%= review.title %></h2>
+      <h2>Description: <%= review.description %></h2>
+      <h2>Rating: <%= review.rating %></h2>
+      <h2>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></h2>
+    <% else %> <h2> Be the first to <%= link_to 'review this book!', new_book_review_path(book) %></h2>
+    <% end %>
+    <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
   </section>
 <% end %>
 

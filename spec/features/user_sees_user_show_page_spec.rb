@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe 'user_show_page' do
-  it "user sees all user reviews" do
+describe 'on the user show page' do
+  it "should show all user's reviews" do
     author_1 = Author.create(name: "Jon Doe")
     author_2 = Author.create(name: "Jane Doe")
     book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
@@ -15,7 +15,8 @@ describe 'user_show_page' do
     visit user_path(april)
 
     expect(page).to have_content("#{april.name}")
-    expect(page).to have_link("Sort")
+    expect(page).to have_link("Newest First")
+    expect(page).to have_link("Oldest First")
 
     expect(page).to have_content( "Review 1" )
     expect(page).to have_content( "I liked this book" )
@@ -30,6 +31,45 @@ describe 'user_show_page' do
     expect(page).to have_link("#{book_2.title}", href: book_path(book_2))
     expect(page).to have_content( 3 )
     expect(page).to have_content( "#{review_3.created_at}" )
+  end
+  context "when the user sorts by newest first" do
+    it "should have descending chronological order" do
+      author_1 = Author.create(name: "Jon Doe")
+      book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
+      april = User.create(name: "April")
+      review_1 = Review.create(title: "Review1", description: "I liked this book", user: april, rating: 5, book: book_1)
+      review_2 = Review.create(title: "Review2", description: "I didn't like this book", user: april, rating: 1, book: book_1)
+      review_3 = Review.create(title: "Review3", description: "Not bad at all", user: april, rating: 4, book: book_1)
+      review_4 = Review.create(title: "Review4", description: "Not the best", user: april, rating: 2, book: book_1)
 
+      visit user_path(april)
+      click_on "Newest First"
+
+      elements = all('#Review1, #Review2, #Review3, #Review4');
+      expect(elements[0]['id']).to eql('Review4');
+      expect(elements[1]['id']).to eql('Review3');
+      expect(elements[2]['id']).to eql('Review2');
+      expect(elements[3]['id']).to eql('Review1');
+    end
+  end
+  context "when the user sorts by oldest first" do
+    it "should have ascending chronological order" do
+      author_1 = Author.create(name: "Jon Doe")
+      book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
+      april = User.create(name: "April")
+      review_1 = Review.create(title: "Review1", description: "I liked this book", user: april, rating: 5, book: book_1)
+      review_2 = Review.create(title: "Review2", description: "I didn't like this book", user: april, rating: 1, book: book_1)
+      review_3 = Review.create(title: "Review3", description: "Not bad at all", user: april, rating: 4, book: book_1)
+      review_4 = Review.create(title: "Review4", description: "Not the best", user: april, rating: 2, book: book_1)
+
+      visit user_path(april)
+      click_on "Oldest First"
+
+      elements = all('#Review1, #Review2, #Review3, #Review4');
+      expect(elements[0]['id']).to eql('Review1');
+      expect(elements[1]['id']).to eql('Review2');
+      expect(elements[2]['id']).to eql('Review3');
+      expect(elements[3]['id']).to eql('Review4');
+    end
   end
 end
