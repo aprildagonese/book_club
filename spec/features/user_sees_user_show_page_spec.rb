@@ -15,7 +15,8 @@ describe 'on the user show page' do
     visit user_path(april)
 
     expect(page).to have_content("#{april.name}")
-    expect(page).to have_link("Sort")
+    expect(page).to have_link("Newest First")
+    expect(page).to have_link("Oldest First")
 
     expect(page).to have_content( "Review 1" )
     expect(page).to have_content( "I liked this book" )
@@ -39,8 +40,8 @@ describe 'on the user show page' do
       jackson = User.create(name: "Jackson")
       review_1 = Review.create(title: "Review1", description: "I liked this book", user: april, rating: 5, book: book_1)
       review_2 = Review.create(title: "Review2", description: "I didn't like this book", user: april, rating: 1, book: book_1)
-      review_3 = Review.create(title: "Review3", description: "Not bad at all", user: april, rating: 4, book: book_2)
-      review_4 = Review.create(title: "Review4", description: "Not the best", user: april, rating: 2, book: book_2)
+      review_3 = Review.create(title: "Review3", description: "Not bad at all", user: april, rating: 4, book: book_1)
+      review_4 = Review.create(title: "Review4", description: "Not the best", user: april, rating: 2, book: book_1)
 
       visit user_path(april)
       click_on "Newest First"
@@ -60,8 +61,8 @@ describe 'on the user show page' do
       jackson = User.create(name: "Jackson")
       review_1 = Review.create(title: "Review 1", description: "I liked this book", user: april, rating: 5, book: book_1)
       review_2 = Review.create(title: "Review 2", description: "I didn't like this book", user: april, rating: 1, book: book_1)
-      review_3 = Review.create(title: "Review 3", description: "Not bad at all", user: april, rating: 4, book: book_2)
-      review_4 = Review.create(title: "Review 4", description: "Not the best", user: april, rating: 2, book: book_2)
+      review_3 = Review.create(title: "Review 3", description: "Not bad at all", user: april, rating: 4, book: book_1)
+      review_4 = Review.create(title: "Review 4", description: "Not the best", user: april, rating: 2, book: book_1)
 
       elements = all('#one, #two, #three, #four'); # all in one selector
       expect(elements[0]['id']).to eql('one');

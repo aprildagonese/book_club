@@ -2,6 +2,9 @@
 
 <h1>Reviews</h1>
 
+<%= link_to 'Newest First', '/users/<%@user.id%>?sort=desc' %>
+<%= link_to 'Oldest First', '/users/<%@user.id%>?sort=asc' %>
+
 <% @user.reviews.each do |review| %>
   <section id="<%=review.title%>">
     <h2>Book: <%= link_to review.book.title, book_path(review.book) %></h2>
@@ -12,5 +15,3 @@
       <p><img src=" <%= review.book.cover_image %>" alt=" <%= review.book.title %> image"></p>
   </section>
 <% end %>
-
-<%= link_to 'Sort', user_path(@user) %>
