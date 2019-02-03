@@ -43,14 +43,28 @@ describe 'author show page' do
       expect(page).to have_content( "#{review_1.title}" )
       expect(page).to have_content( "#{review_1.description}" )
       expect(page).to have_content( "Rating: #{review_1.rating}" )
-      expect(page).to have_content( "#{review_1.user}" )
+      expect(page).to have_content( "#{review_1.user.name}" )
     end
 
     within "#book-#{@book_2.id}" do
       expect(page).to have_content( "#{review_4.title}" )
       expect(page).to have_content( "#{review_4.description}" )
       expect(page).to have_content( "Rating: #{review_4.rating}" )
-      expect(page).to have_content( "#{review_4.user}" )
+      expect(page).to have_content( "#{review_4.user.name}" )
+    end
+  end
+
+  context "when there are no user reviews yet" do
+    it "user sees a link to add a review" do
+      visit author_path(@author_1)
+
+      within "#book-#{@book_1.id}" do
+        expect(page).to have_content("review this book!")
+      end
+
+      within "#book-#{@book_2.id}" do
+        expect(page).to have_content("review this book!")
+      end
     end
   end
 
