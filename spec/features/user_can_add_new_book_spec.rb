@@ -17,7 +17,6 @@ describe 'on the new book page' do
 
     visit book_path(new_book)
 
-    expect(page).to have_content("Title: #{new_book.title}")
     expect(page).to have_content("Length: #{new_book.length}")
     expect(page).to have_content("Year: #{new_book.year}")
     expect(page).to have_xpath("//img[contains(@src,'#{File.basename(new_book.cover_image)}')]")
@@ -44,7 +43,6 @@ describe 'on the new book page' do
 
     visit book_path(new_book)
 
-    expect(page).to have_content("Title: #{new_book.title}")
     expect(page).to have_content("Length: #{new_book.length}")
     expect(page).to have_content("Year: #{new_book.year}")
     expect(page).to have_xpath("//img[contains(@src,'#{File.basename(new_book.cover_image)}')]")

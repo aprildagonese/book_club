@@ -2,7 +2,7 @@
 
 <% @author.books.each do |book| %>
   <section id="book-<%=book.id%>">
-  <h2>Title: <%= book.title %> </h2>
+  <h2>Title: <%= link_to book.title, book_path(book) %></h2>
   <h2>Length: <%= book.length %> </h2>
   <h2>Year: <%= book.year %> </h2>
   <% if book.authors.count > 1 %> <h2>Co-Author(s):
