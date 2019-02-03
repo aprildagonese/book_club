@@ -15,8 +15,8 @@
     <h2>Title: <%= review.title %></h2>
     <h2>Description: <%= review.description %></h2>
     <h2>Rating: <%= review.rating %></h2>
-    <h2>User: <%= review.user.name %></h2>
-  <% else %> <h2> Be the first to <a href=<%new_book_review_path(book)%>>review this book!</a></h2>
+    <h2>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></h2>
+  <% else %> <h2> Be the first to <a href=<% new_book_review_path(book) %>>review this book!</a></h2>
   <% end %>
   <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
   </section>
