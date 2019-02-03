@@ -2,7 +2,7 @@
 <h2>Title: <%= @book.title %> </h2>
 <h2>Length: <%= @book.length %> </h2>
 <h2>Year: <%= @book.year %> </h2>
-<h2>Author(s): <% @book.authors.each do |author| %> <br/> <%= author.name %><% end %></h2>
+<h2>Author(s): <% @book.authors.each do |author| %> <br/><a href=<%=author_path(author)%>><%= author.name %></a><% end %></h2>
 <p><img src=" <%= @book.cover_image %>" alt=" <%= @book.title %> image"></p>
 
 <h1>Reviews</h1>

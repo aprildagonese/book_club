@@ -15,6 +15,7 @@ describe 'books_index' do
       expect(page).to have_content("Length: 111")
       expect(page).to have_content("Year: 1111")
       expect(page).to have_content("Author(s):\nJane Doe")
+      expect(page).to have_link("Jane Doe", href: author_path(author_2))
       expect(page).to have_xpath("//img[contains(@src,'#{File.basename(book_1.cover_image)}')]")
     end
 
@@ -23,6 +24,7 @@ describe 'books_index' do
       expect(page).to have_content("Length: 222")
       expect(page).to have_content("Year: 2222")
       expect(page).to have_content("Author(s):\nJane Doe")
+      expect(page).to have_link("Jane Doe", href: author_path(author_2))
       expect(page).to have_xpath("//img[contains(@src,'#{File.basename(book_2.cover_image)}')]")
     end
   end
