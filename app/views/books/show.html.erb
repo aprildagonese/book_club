@@ -1,5 +1,4 @@
 <h1> <%= @book.title %></h1>
-<h2>Title: <%= @book.title %> </h2>
 <h2>Length: <%= @book.length %> </h2>
 <h2>Year: <%= @book.year %> </h2>
 <h2>Author(s): <% @book.authors.each do |author| %> <br/><a href=<%=author_path(author)%>><%= author.name %></a><% end %></h2>
