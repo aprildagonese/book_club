@@ -23,11 +23,11 @@ RSpec.describe Author, type: :model do
 
         author_1.delete_books(author_1.books)
 
-        expect(author_1.books.count).to eq(1)
-        expect(Book.count).to eq(1)
+        expect(author_1.books.count).to eq(0)
+        expect(Book.count).to eq(0)
       end
 
-      it "should not delete a book when it has more than one author" do
+      it "should still delete a book when it has more than one author" do
         author_1 = Author.create(name: "Jon Doe")
         author_2 = Author.create(name: "Jane Doe")
         book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
@@ -38,8 +38,8 @@ RSpec.describe Author, type: :model do
 
         author_2.delete_books(author_2.books)
 
-        expect(author_2.books.count).to eq(1)
-        expect(Book.count).to eq(2)
+        expect(author_2.books.count).to eq(0)
+        expect(Book.count).to eq(1)
       end
     end
   end
