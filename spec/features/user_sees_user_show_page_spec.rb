@@ -20,12 +20,14 @@ describe 'user_show_page' do
     expect(page).to have_content( "Review 1" )
     expect(page).to have_content( "I liked this book" )
     expect(page).to have_content( "Book 1 Title" )
+    expect(page).to have_link("Title: Book 1 Title", href: book_path(book_1))
     expect(page).to have_content( 5 )
     expect(page).to have_content( "#{review_1.created_at}" )
 
     expect(page).to have_content( "Review 3" )
     expect(page).to have_content( "Book 2 was ok" )
     expect(page).to have_content( "Book 2 Title" )
+    expect(page).to have_link("Title: Book 2 Title", href: book_path(book_2))
     expect(page).to have_content( 3 )
     expect(page).to have_content( "#{review_3.created_at}" )
 
