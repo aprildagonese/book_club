@@ -8,4 +8,10 @@ class Book < ApplicationRecord
     greater_than_or_equal_to: 0 }
   validates :title, uniqueness: { case_sensitive: false }
 
+  def delete_reviews(reviews)
+    reviews.each do |review|
+      review.delete
+    end
+  end
+
 end

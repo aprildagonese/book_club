@@ -13,3 +13,5 @@
 
   <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
 <% end %>
+
+<%= link_to 'Delete This Author', author_path(@author), method: :delete %>

@@ -4,7 +4,6 @@ RSpec.describe "on the New Review page", type: :feature do
   it "user can create a new review" do
     author_1 = Author.create(name: "Jon Doe")
     book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
-    april = User.create(name: "April")
 
     visit new_book_review_path(book_1)
 
