@@ -12,6 +12,7 @@ describe 'books_index' do
 
     within "#book-#{book_1.id}" do
       expect(page).to have_content("Title: Book 1 Title")
+      expect(page).to have_link("#{book_1.title}", href: book_path(book_1))
       expect(page).to have_content("Length: 111")
       expect(page).to have_content("Year: 1111")
       expect(page).to have_content("Author(s):\nJane Doe")
@@ -21,6 +22,7 @@ describe 'books_index' do
 
     within "#book-#{book_2.id}" do
       expect(page).to have_content("Book 2 Title")
+      expect(page).to have_link("#{book_2.title}", href: book_path(book_2))
       expect(page).to have_content("Length: 222")
       expect(page).to have_content("Year: 2222")
       expect(page).to have_content("Author(s):\nJane Doe")

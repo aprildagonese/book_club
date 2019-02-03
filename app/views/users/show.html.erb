@@ -3,7 +3,7 @@
 <h1>Reviews</h1>
 
 <% @user.reviews.each do |review| %>
-  <h2>Book: <%= review.book.title %> </h2>
+  <h2>Book: <%= link_to review.book.title, book_path(review.book) %></h2>
   <h2>Title: <%= review.title %> </h2>
   <h2>Description: <%= review.description %> </h2>
   <h2>Rating: <%= review.rating %> </h2>

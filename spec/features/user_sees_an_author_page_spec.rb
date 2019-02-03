@@ -41,16 +41,20 @@ describe 'author show page' do
 
     within "#book-#{@book_1.id}" do
       expect(page).to have_content( "#{review_1.title}" )
+      expect(page).to have_link("#{@book_1.title}", href: book_path(@book_1))
       expect(page).to have_content( "#{review_1.description}" )
       expect(page).to have_content( "Rating: #{review_1.rating}" )
       expect(page).to have_content( "#{review_1.user.name}" )
+      expect(page).to have_link("April", href: user_path(april))
     end
 
     within "#book-#{@book_2.id}" do
       expect(page).to have_content( "#{review_4.title}" )
+      expect(page).to have_link("#{@book_2.title}", href: book_path(@book_2))
       expect(page).to have_content( "#{review_4.description}" )
       expect(page).to have_content( "Rating: #{review_4.rating}" )
       expect(page).to have_content( "#{review_4.user.name}" )
+      expect(page).to have_link("April", href: user_path(april))
     end
   end
 
@@ -60,10 +64,12 @@ describe 'author show page' do
 
       within "#book-#{@book_1.id}" do
         expect(page).to have_content("review this book!")
+        expect(page).to have_link("review this book!", href: new_book_review_path(@book_1))
       end
 
       within "#book-#{@book_2.id}" do
         expect(page).to have_content("review this book!")
+        expect(page).to have_link("review this book!", href: new_book_review_path(@book_2))
       end
     end
   end

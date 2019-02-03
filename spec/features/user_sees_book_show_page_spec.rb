@@ -9,8 +9,6 @@ describe 'book_show_page' do
 
     visit book_path(book_1)
 
-    # save_and_open_page
-    # require 'pry'; binding.pry
     expect(page).to have_content( "#{book_1.title}" )
     expect(page).to have_content("Length: #{book_1.length}")
     expect(page).to have_content("Year: #{book_1.year}")
@@ -33,15 +31,20 @@ describe 'book_show_page' do
 
     visit book_path(book_1)
 
-    expect(page).to have_content( "Review 1" )
-    expect(page).to have_content( "I liked this book" )
-    expect(page).to have_content( "April" )
-    expect(page).to have_content( 5 )
-
-    expect(page).to have_content( "Review 2" )
-    expect(page).to have_content( "I didn't like this book" )
-    expect(page).to have_content( "Rene" )
-    expect(page).to have_content( 1 )
+    within "#review-#{review_1.id}" do
+      expect(page).to have_content( "Review 1" )
+      expect(page).to have_content( "I liked this book" )
+      expect(page).to have_content( "April" )
+      expect(page).to have_link("April", href: user_path(april))
+      expect(page).to have_content( 5 )
+    end
+    within "#review-#{review_2.id}" do
+      expect(page).to have_content( "Review 2" )
+      expect(page).to have_content( "I didn't like this book" )
+      expect(page).to have_content( "Rene" )
+      expect(page).to have_link("Rene", href: user_path(rene))
+      expect(page).to have_content( 1 )
+    end
   end
 
 
