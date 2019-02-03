@@ -14,4 +14,8 @@ class Book < ApplicationRecord
     end
   end
 
+  def highest_review(reviews)
+    reviews.max_by(&:rating)
+  end
+
 end
