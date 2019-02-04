@@ -87,20 +87,22 @@ describe 'on the user show page' do
     expect(Review.count).to eq(4)
     expect(page).to have_content("Not bad at all")
 
-    within "#review3" do
+    within "#Review3" do
       click_on "Delete This Review"
     end
 
+    expect(current_path).to eq(user_path(april))
     expect(Review.count).to eq(3)
     expect(page).to_not have_content("Not bad at all")
     expect(page).to have_content("I didn't like this book")
 
-    within "#review2" do
+    within "#Review2" do
       click_on "Delete This Review"
     end
 
-    expect(Review.count).to eq(3)
+    expect(Review.count).to eq(2)
     expect(page).to_not have_content("I didn't like this book")
+    expect(current_path).to eq(user_path(april))
   end
 
 end
