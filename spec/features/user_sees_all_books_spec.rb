@@ -6,11 +6,26 @@ describe 'books_index' do
     book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg", authors: [author_2])
     book_2 = Book.create(title: "Book 2 Title", length: 222, year: 2222, cover_image: "http://bookriotcom.c.presscdn.com/wp-content/uploads/2014/08/HP_hc_new_2-e1407533769415.jpeg", authors: [author_2])
 
+    april = User.create(name: "April")
+    rene = User.create(name: "Rene")
+    ian = User.create(name: "Ian")
+    megan = User.create(name: "Megan")
+    jennica = User.create(name: "Jennica")
+
+
+    review_1 = book_1.reviews.create(title: "Review 1", description: "I liked this book", user: april, rating: 4)
+    review_2 = book_1.reviews.create(title: "Review 2", description: "so so", user: rene, rating: 1)
+    review_3 = book_2.reviews.create(title: "Review 3", description: "Wow!", user: megan, rating: 4)
+    review_4 = book_2.reviews.create(title: "Review 4", description: "As good as it gets!", user: ian, rating: 5)
+    review_5 = book_2.reviews.create(title: "Review 5", description: "It was ok...", user: jennica, rating: 3)
+
     visit "/books"
 
     expect(page).to have_link("Add a New Book", href: new_book_path)
 
     within "#book-#{book_1.id}" do
+      expect(page).to have_content("Avg Rating: 2.5")
+      expect(page).to have_content("Total Reviews: 2")
       expect(page).to have_content("Title: Book 1 Title")
       expect(page).to have_content("Length: 111")
       expect(page).to have_content("Year: 1111")
@@ -20,6 +35,8 @@ describe 'books_index' do
     end
 
     within "#book-#{book_2.id}" do
+      expect(page).to have_content("Avg Rating: 4.0")
+      expect(page).to have_content("Total Reviews: 3")
       expect(page).to have_content("Book 2 Title")
       expect(page).to have_content("Length: 222")
       expect(page).to have_content("Year: 2222")
