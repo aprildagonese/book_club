@@ -2,13 +2,16 @@
 
 <h1>Reviews</h1>
 
-<% @user.reviews.each do |review| %>
-  <h2>Book: <%= review.book.title %> </h2>
-  <h2>Title: <%= review.title %> </h2>
-  <h2>Description: <%= review.description %> </h2>
-  <h2>Rating: <%= review.rating %> </h2>
-  <h2>Review Date: <%= review.created_at %>
-    <p><img src=" <%= review.book.cover_image %>" alt=" <%= review.book.title %> image"></p>
-<% end %>
+<%= link_to 'Newest First', user_path(user: @user, sort: 'desc') %>
+<%= link_to 'Oldest First', user_path(user: @user, sort: 'asc') %>
 
-<%= link_to 'Sort', user_path %>
+<% @reviews.each do |review| %>
+  <section id="<%=review.title%>">
+    <h2>Book: <%= link_to review.book.title, book_path(review.book) %></h2>
+    <h2>Title: <%= review.title %> </h2>
+    <h2>Description: <%= review.description %> </h2>
+    <h2>Rating: <%= review.rating %> </h2>
+    <h2>Review Date: <%= review.created_at %>
+      <p><img src=" <%= review.book.cover_image %>" alt=" <%= review.book.title %> image"></p>
+  </section>
+<% end %>

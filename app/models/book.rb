@@ -30,4 +30,9 @@ class Book < ApplicationRecord
     .order("average_rating #{direction}")
     .limit(3)
   end
+
+  def highest_review(reviews)
+    reviews.max_by(&:rating)
+  end
+
 end

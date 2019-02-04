@@ -4,9 +4,9 @@
 
 <% @books.each do |book| %>
 <section id="book-<%=book.id%>"
-  <p>Avg Rating: <%= book.average_rating %></p>
-  <p>Total Reviews: <%= book.total_reviews %></p>
-  <h2>Title: <%= book.title %> </h2>
+  <h2>Title: <%= link_to book.title, book_path(book) %></h2>
+  <h2>Average Rating: <%= book.average_rating %></h2>
+  <h2>Total Reviews: <%= book.total_reviews %></h2>
   <h2>Length: <%= book.length %> </h2>
   <h2>Year: <%= book.year %> </h2>
   <h2>Author(s): <% book.authors.each do |author| %> </h2>
@@ -35,5 +35,4 @@
       <p><%= top_user.name %>: <%=  top_user.reviews_count%></p>
     <% end %>
   </div>
-
 </footer>

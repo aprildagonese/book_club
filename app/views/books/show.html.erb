@@ -1,5 +1,4 @@
 <h1> <%= @book.title %></h1>
-<h2>Title: <%= @book.title %> </h2>
 <h2>Length: <%= @book.length %> </h2>
 <h2>Year: <%= @book.year %> </h2>
 <h2>Author(s): <% @book.authors.each do |author| %> <br/><a href=<%=author_path(author)%>><%= author.name %></a><% end %></h2>
@@ -7,10 +6,12 @@
 
 <h1>Reviews</h1>
 <% @book.reviews.each do |review| %>
-  <h2>Description: <%= review.title %> </h2>
-  <h2>Text: <%= review.description %> </h2>
-  <h2>Rating: <%= review.rating %> </h2>
-  <h2>User: <%= review.user.name %> </h2>
+  <section id="review-<%=review.id%>">
+    <h2>Description: <%= review.title %> </h2>
+    <h2>Text: <%= review.description %> </h2>
+    <h2>Rating: <%= review.rating %> </h2>
+    <h2>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></h2>
+  </section>
 <% end %>
 
 <%= link_to 'Add a New Review', new_book_review_path(@book) %>

@@ -16,8 +16,7 @@ RSpec.describe Book, type: :model do
   end
 
   describe 'intance methods' do
-
-    context "deleting a book" do
+    context "in order to delete a book" do
       it "should delete the book's reviews" do
         author_1 = Author.create(name: "Jon Doe")
         author_2 = Author.create(name: "Jane Doe")
@@ -92,6 +91,17 @@ RSpec.describe Book, type: :model do
         expect(Book.three_top_or_bottom_rated("DESC")).to eq([book_7,book_2,book_6])
         expect(Book.three_top_or_bottom_rated("ASC")).to eq([book_3, book_4, book_8])
       end
+
+    it "should find the highest review for a book" do
+      author_1 = Author.create(name: "Jon Doe")
+      book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
+      april = User.create(name: "April")
+      review_1 = book_1.reviews.create(title: "Good book", description: "Liked it", rating: 4, user: april)
+      review_2 = book_1.reviews.create(title: "Fine book", description: "Liked it enough", rating: 3, user: april)
+      review_3 = book_1.reviews.create(title: "Boring book", description: "Didn't like it", rating: 2, user: april)
+      review_4 = book_1.reviews.create(title: "Great book", description: "It was wonderful!", rating: 5, user: april)
+
+      expect(book_1.highest_review(book_1.reviews)).to eq(review_4)
     end
   end
 end
