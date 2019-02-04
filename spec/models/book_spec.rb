@@ -38,7 +38,7 @@ RSpec.describe Book, type: :model do
     end
 
     context "generating statistics for books index page " do
-      it "should calculate the average rating for a book" do
+      it "should calculate the average rating and total reviews for a book" do
         author_1 = Author.create(name: "John Smith")
         book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg", authors: [author_1])
         april = User.create(name: "April")
@@ -49,9 +49,10 @@ RSpec.describe Book, type: :model do
         book_1.reviews.create(title: "Review 3", description: "Wow!", user: jennica, rating: 5)
 
         expect(book_1.average_rating).to eq(4)
+        expect(book_1.total_reviews).to eq(3)
       end
 
-      it "should get the 3 of highest rated books and 3 of the lowest rated books" do
+      it "should get the 3 highest rated book and 3 lowest rated books" do
         author_1 = Author.create(name: "John Smith")
         author_2 = Author.create(name: "Jane Doe")
         author_3 = Author.create(name: "Maria Calix")

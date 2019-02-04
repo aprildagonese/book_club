@@ -19,6 +19,10 @@ class Book < ApplicationRecord
     reviews.average(:rating).to_f.round(1)
   end
 
+  def total_reviews
+    reviews.count
+  end
+
   def self.three_top_or_bottom_rated(direction)
     Book.joins(:reviews)
     .select('books.*, avg(reviews.rating) as average_rating')
