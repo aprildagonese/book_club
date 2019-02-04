@@ -5,11 +5,34 @@
 <% @books.each do |book| %>
 <section id="book-<%=book.id%>">
   <h2>Title: <%= link_to book.title, book_path(book) %></h2>
+  <h2>Average Rating: <%= book.average_rating %></h2>
+  <h2>Total Reviews: <%= book.total_reviews %></h2>
   <h2>Length: <%= book.length %> </h2>
   <h2>Year: <%= book.year %> </h2>
   <h2>Author(s): <% book.authors.each do |author| %> </h2>
-  <h2><a href=<%=author_path(author)%> ><%= author.name %></a></h2>
+    <h2><a href=<%=author_path(author)%> ><%= author.name %></a></h2>
   <% end %>
   <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
 </section>
 <% end %>
+
+<footer class ="statistics-footer">
+  <div class="statistics-column-1">
+    <h4 class="column_title">Top Rated Books</h4>
+    <% @books.three_top_or_bottom_rated("DESC").each do |top_book| %>
+      <p><%= top_book.title %>: <%=  top_book.average_rating%></p>
+    <% end %>
+  </div>
+  <div class="statistics-column-2">
+    <h4 class="column-title">Lowest Rated Books</h4>
+    <% @books.three_top_or_bottom_rated("ASC").each do |bottom_book| %>
+      <p><%= bottom_book.title %>: <%=  bottom_book.average_rating%></p>
+    <% end %>
+  </div>
+  <div class="statistics-column-3">
+    <h4 class="column-title">Users With Most Reviews</h4>
+    <% User.top_three_reviewers.each do |top_user| %>
+      <p><%= top_user.name %>: <%=  top_user.reviews_count%></p>
+    <% end %>
+  </div>
+</footer>
