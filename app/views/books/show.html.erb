@@ -15,3 +15,22 @@
 <% end %>
 
 <%= link_to 'Add a New Review', new_book_review_path(@book) %>
+
+<footer class ="statistics-footer">
+  <div class="statistics-column-1">
+    <h4 class="column_title">Top reviews for this book:</h4>
+    <% @book.three_top_or_bottom_reviews("DESC").each do |top_review| %>
+      <p><%= top_review.title %> <%= top_review.rating %> <%= top_review.user.name %></p>
+    <% end %>
+  </div>
+  <div class="statistics-column-2">
+    <h4 class="column-title">Lowest reviews for this book:</h4>
+    <% @book.three_top_or_bottom_reviews("ASC").each do |bottom_review| %>
+      <p>\n<%= bottom_review.title %> <%= bottom_review.rating %> <%= bottom_review.user.name %></p>
+    <% end %>
+  </div>
+  <div class="statistics-column-3">
+    <h4 class="column-title">Average Rating for this Book:</h4>
+    <p><%= @book.average_rating%></p>
+  </div>
+</footer>
