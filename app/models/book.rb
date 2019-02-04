@@ -19,7 +19,12 @@ class Book < ApplicationRecord
     reviews.average(:rating).to_f.round(1)
   end
 
-  def
+  def self.three_top_or_bottom_rated(direction)
+    Book.joins(:reviews)
+    .select('books.*, avg(reviews.rating) as average_rating')
+    .group("id")
+    .order("average_rating #{direction}")
+    .limit(3)
   end
 
 end

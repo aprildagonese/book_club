@@ -47,7 +47,7 @@ RSpec.describe Book, type: :model do
         book_1.reviews.create(title: "Review 1", description: "I liked this book", user: april, rating: 4)
         book_1.reviews.create(title: "Review 2", description: "so so", user: rene, rating: 3)
         book_1.reviews.create(title: "Review 3", description: "Wow!", user: jennica, rating: 5)
-        require 'pry'; binding.pry
+
         expect(book_1.average_rating).to eq(4)
       end
 
@@ -77,18 +77,19 @@ RSpec.describe Book, type: :model do
         review_1 = book_1.reviews.create(title: "Review 1", description: "I liked this book", user: april, rating: 4)
         review_2 = book_1.reviews.create(title: "Review 2", description: "so so", user: rene, rating: 1)
         review_3 = book_2.reviews.create(title: "Review 3", description: "Wow!", user: ian, rating: 4)
-        review_4 = Review.create(title: "Review 4", description: "As good as it gets!", user: rene, rating: 5, book: book_2)
-        review_5 = Review.create(title: "Review 5", description: "Mixed feelings", user: jennica, rating:1 , book: book_3)
-        review_6 = Review.create(title: "Review 7", description: "dfdfgsgfdgsggs", user: jennica, rating: 2, book: book_4)
-        review_7 = Review.create(title: "Review 8", description: "gsfgfgdsgsgfsgs", user: april, rating: 1, book: book_4)
-        review_8 = Review.create(title: "Review 9", description: "sgd hdfhsghf thshh", user: rene, rating: 3, book: book_5)
-        review_9 = Review.create(title: "Review 10", description: "hhaddh lhhfjklae", user: jennica, rating: 3, book: book_6)
-        review_10 = Review.create(title: "Review 11", description: ";kdhualhfjlajfk", user: megan, rating: 5, book: book_6)
-        review_11 = Review.create(title: "Review 12", description: "ef lDFH LKHDLjkhd", user: april, rating: 5, book: book_7)
-        review_12 = Review.create(title: "Review 13", description: "akdjkulyrh jkdhk", user: jennica, rating: 2, book: book_8)
-
-        expect(@books.three_highest_rated).to eq([book_7,book_2,book_6])
-        expect(@books.three_lowest_rated).to eq([book_8, book_4, book_3])
+        review_4 = book_2.reviews.create(title: "Review 4", description: "As good as it gets!", user: rene, rating: 5)
+        review_5 = book_3.reviews.create(title: "Review 5", description: "Mixed feelings", user: jennica, rating:1)
+        review_6 = book_4.reviews.create(title: "Review 7", description: "dfdfgsgfdgsggs", user: jennica, rating: 2)
+        review_7 = book_4.reviews.create(title: "Review 8", description: "gsfgfgdsgsgfsgs", user: april, rating: 1)
+        review_8 = book_5.reviews.create(title: "Review 9", description: "sgd hdfhsghf thshh", user: rene, rating: 3)
+        review_9 = book_6.reviews.create(title: "Review 10", description: "hhaddh lhhfjklae", user: jennica, rating: 3)
+        review_10 = book_6.reviews.create(title: "Review 11", description: ";kdhualhfjlajfk", user: megan, rating: 5)
+        review_11 = book_7.reviews.create(title: "Review 12", description: "ef lDFH LKHDLjkhd", user: april, rating: 5)
+        review_12 = book_8.reviews.create(title: "Review 13", description: "akdjkulyrh jkdhk", user: jennica, rating: 2)
+          # require 'pry'; binding.pry
+        books = Book.all
+        expect(books.three_top_or_bottom_rated("DESC")).to eq([book_7,book_2,book_6])
+        expect(books.three_top_or_bottom_rated("ASC")).to eq([book_3, book_4, book_8])
       end
     end
   end
