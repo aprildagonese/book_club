@@ -3,7 +3,7 @@
 <%= link_to 'Add a New Book', new_book_path %>
 
 <% @books.each do |book| %>
-<section id="book-<%=book.id%>"
+<section id="book-<%=book.id%>">
   <h2>Title: <%= link_to book.title, book_path(book) %></h2>
   <h2>Average Rating: <%= book.average_rating %></h2>
   <h2>Total Reviews: <%= book.total_reviews %></h2>
