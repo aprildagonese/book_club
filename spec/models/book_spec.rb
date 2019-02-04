@@ -50,6 +50,7 @@ RSpec.describe Book, type: :model do
         expect(book_1.average_rating).to eq(4)
         expect(book_1.total_reviews).to eq(3)
       end
+    end
 
     it "should get the 3 highest rated book and 3 lowest rated books" do
       author_1 = Author.create(name: "John Smith")
@@ -104,5 +105,4 @@ RSpec.describe Book, type: :model do
       expect(book_1.highest_review(book_1.reviews)).to eq(review_4)
     end
   end
-
 end

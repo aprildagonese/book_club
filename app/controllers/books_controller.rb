@@ -5,6 +5,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @users = User.all
   end
 
   def new
