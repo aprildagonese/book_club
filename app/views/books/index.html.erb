@@ -8,19 +8,26 @@
   <h2>Length: <%= book.length %> </h2>
   <h2>Year: <%= book.year %> </h2>
   <h2>Author(s): <% book.authors.each do |author| %> </h2>
-  <h2><a href=<%=author_path(author)%> ><%= author.name %></a></h2>
+    <h2><a href=<%=author_path(author)%> ><%= author.name %></a></h2>
   <% end %>
   <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
 </section>
 <% end %>
+
 <footer class ="statistics-footer">
   <div class="statistics-column-1">
     <h4 class="column_title">Top Rated Books</h4>
-
+    <% top_books = @books.three_top_or_bottom_rated("DESC")%>
+    <% top_books.each do |top_book| %>
+      <p><%= top_book.title %>: <%=  top_book.average_rating%></p>
+    <% end %>
   </div>
   <div class="statistics-column-2">
     <h4 class="column-title">Lowest Rated Books</h4>
-    <p></p>
+    <% bottom_books = @books.three_top_or_bottom_rated("ASC")%>
+    <% bottom_books.each do |bottom_book| %>
+      <p><%= bottom_book.title %>: <%=  bottom_book.average_rating%></p>
+    <% end %>
   </div>
   <div class="statistics-column-3">
     <h4 class="column-title">Users With Most Reviews</h4>

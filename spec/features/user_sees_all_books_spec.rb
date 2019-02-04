@@ -70,21 +70,21 @@ describe 'books_index' do
     within ".statistics-footer" do
       within ".statistics-column-1" do
         expect(page).to have_content("Top Rated Books")
-        expect(page).to have_content("#{book_7[:title]}:\n#{book_7.average_rating}")
-        expect(page).to have_content("#{book_2[:title]}:\n#{book_2.average_rating}")
-        expect(page).to have_content("#{book_6[:title]}:\n#{book_6.average_rating}")
+        expect(page).to have_content("#{book_7.title}: #{book_7.average_rating}")
+        expect(page).to have_content("#{book_2.title}: #{book_2.average_rating}")
+        expect(page).to have_content("#{book_6.title}: #{book_6.average_rating}")
       end
       within ".statistics-column-2" do
         expect(page).to have_content("Lowest Rated Books")
-        expect(page).to have_content("#{book_7[:title]}:\n#{book_7.average_rating}")
-        expect(page).to have_content("#{book_2[:title]}:\n#{book_2.average_rating}")
-        expect(page).to have_content("#{book_6[:title]}:\n#{book_6.average_rating}")
+        expect(page).to have_content("#{book_3.title}: #{book_3.average_rating}")
+        expect(page).to have_content("#{book_4.title}: #{book_4.average_rating}")
+        expect(page).to have_content("#{book_8.title}: #{book_8.average_rating}")
       end
       within ".statistics-column-3" do
         expect(page).to have_content("Users With Most Reviews")
-        expect(page).to have_content("Jennica:\n4")
-        expect(page).to have_content("April:\n3")
-        expect(page).to have_content("Rene>\n:3")
+        expect(page).to have_content("Jennica: 4")
+        expect(page).to have_content("April: 3")
+        expect(page).to have_content("Rene: 3")
       end
     end
   end
