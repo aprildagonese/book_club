@@ -86,11 +86,10 @@ RSpec.describe Book, type: :model do
         review_10 = book_6.reviews.create(title: "Review 11", description: ";kdhualhfjlajfk", user: megan, rating: 5)
         review_11 = book_7.reviews.create(title: "Review 12", description: "ef lDFH LKHDLjkhd", user: april, rating: 5)
         review_12 = book_8.reviews.create(title: "Review 13", description: "akdjkulyrh jkdhk", user: jennica, rating: 2)
-          # require 'pry'; binding.pry
+
         books = Book.all
         expect(books.three_top_or_bottom_rated("DESC")).to eq([book_7,book_2,book_6])
         expect(books.three_top_or_bottom_rated("ASC")).to eq([book_3, book_4, book_8])
-        expect(books.three_top_reviewers).to eq([jennica, april, rene])
       end
     end
   end

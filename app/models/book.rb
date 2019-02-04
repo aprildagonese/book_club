@@ -26,5 +26,4 @@ class Book < ApplicationRecord
     .order("average_rating #{direction}")
     .limit(3)
   end
-
 end
