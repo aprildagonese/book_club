@@ -31,6 +31,10 @@ class Book < ApplicationRecord
     .limit(3)
   end
 
+  def three_top_or_bottom_reviews(direction)
+    reviews.order("rating #{direction}").limit(3)
+  end
+
   def highest_review(reviews)
     reviews.max_by(&:rating)
   end

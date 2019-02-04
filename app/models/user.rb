@@ -11,7 +11,6 @@ class User < ApplicationRecord
     .select('users.*, count(reviews.id) as reviews_count')
     .group("id")
     .order("reviews_count DESC")
-    .order("name ASC")
     .limit(3)
   end
 
