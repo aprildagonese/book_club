@@ -90,6 +90,7 @@ RSpec.describe Book, type: :model do
         books = Book.all
         expect(books.three_top_or_bottom_rated("DESC")).to eq([book_7,book_2,book_6])
         expect(books.three_top_or_bottom_rated("ASC")).to eq([book_3, book_4, book_8])
+        expect(books.three_top_reviewers).to eq([jennica, april, rene])
       end
     end
   end
