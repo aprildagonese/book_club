@@ -72,4 +72,37 @@ describe 'on the user show page' do
       expect(elements[3]['id']).to eql('Review4');
     end
   end
+
+  it "user can delete individual reviews" do
+    author_1 = Author.create(name: "Jon Doe")
+    book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
+    april = User.create(name: "April")
+    review_1 = Review.create(title: "Review1", description: "I liked this book", user: april, rating: 5, book: book_1)
+    review_2 = Review.create(title: "Review2", description: "I didn't like this book", user: april, rating: 1, book: book_1)
+    review_3 = Review.create(title: "Review3", description: "Not bad at all", user: april, rating: 4, book: book_1)
+    review_4 = Review.create(title: "Review4", description: "Not the best", user: april, rating: 2, book: book_1)
+
+    visit user_path(april)
+
+    expect(Review.count).to eq(4)
+    expect(page).to have_content("Not bad at all")
+
+    within "#Review3" do
+      click_on "Delete This Review"
+    end
+
+    expect(current_path).to eq(user_path(april))
+    expect(Review.count).to eq(3)
+    expect(page).to_not have_content("Not bad at all")
+    expect(page).to have_content("I didn't like this book")
+
+    within "#Review2" do
+      click_on "Delete This Review"
+    end
+
+    expect(Review.count).to eq(2)
+    expect(page).to_not have_content("I didn't like this book")
+    expect(current_path).to eq(user_path(april))
+  end
+
 end

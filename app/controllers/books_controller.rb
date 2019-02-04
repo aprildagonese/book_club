@@ -34,6 +34,13 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    book = Book.find_by(id: params[:id])
+    book.delete_reviews(book.reviews)
+    book.destroy
+    redirect_to books_path
+  end
+
 private
 
   def book_params

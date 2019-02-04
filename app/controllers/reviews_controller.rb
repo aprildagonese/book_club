@@ -20,19 +20,11 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
-  def update
-    @review = Review.find(params[:id])
-
-    @review.title = params[:review][:title]
-    @review.description = params[:review][:description]
-    @review.rating = params[:review][:rating]
-    @review.user = params[:review][:user]
-
-    if @review.save
-      redirect_to review_path(@review)
-    else
-      render :edit
-    end
+  def destroy
+    review = Review.find_by(id: params[:review])
+    user = User.find_by(id: params[:id])
+    review.destroy
+    redirect_to user_path(user)
   end
 
   private
