@@ -13,7 +13,6 @@ class BooksController < ApplicationController
   end
 
   def create
-    binding.pry
     @book = Book.new(merged_params)
     @book.authors = params[:book][:authors].split(",").map do |author|
       Author.find_or_create_by(name: author.titleize.strip)
@@ -33,6 +32,13 @@ class BooksController < ApplicationController
     else
       book_params
     end
+  end
+
+  def destroy
+    book = Book.find_by(id: params[:id])
+    book.delete_reviews(book.reviews)
+    book.destroy
+    redirect_to books_path
   end
 
 private
