@@ -25,9 +25,9 @@ class Book < ApplicationRecord
 
   def self.three_top_or_bottom_rated(direction)
     Book.joins(:reviews)
-    .select('books.*, avg(reviews.rating) as average_rating')
+    .select('books.*, avg(reviews.rating) as avg_rating')
     .group("id")
-    .order("average_rating #{direction}")
+    .order("avg_rating #{direction}")
     .limit(3)
   end
 
