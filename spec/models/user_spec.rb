@@ -48,7 +48,7 @@ RSpec.describe User, type: :model do
         review_11 = book_7.reviews.create(title: "Review 12", description: "ef lDFH LKHDLjkhd", user: april, rating: 5)
         review_12 = book_8.reviews.create(title: "Review 13", description: "akdjkulyrh jkdhk", user: jennica, rating: 2)
 
-        expect(User.top_three_reviewers).to eq([jennica, april, rene])
+        expect(User.top_three_reviewers).to include(jennica, april, rene)
       end
     end
   end
