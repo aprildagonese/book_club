@@ -13,5 +13,6 @@
     <h2>Rating: <%= review.rating %> </h2>
     <h2>Review Date: <%= review.created_at %>
       <p><img src=" <%= review.book.cover_image %>" alt=" <%= review.book.title %> image"></p>
+    <p><%= link_to 'Delete This Review', review_path(review: review), method: :delete %></p>
   </section>
 <% end %>
