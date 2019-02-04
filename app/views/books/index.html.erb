@@ -31,7 +31,7 @@
   </div>
   <div class="statistics-column-3">
     <h4 class="column-title">Users With Most Reviews</h4>
-    <% User.top_three_reviewers.each do |top_user| %>
+    <% @users.top_three_reviewers.each do |top_user| %>
       <p><%= link_to top_user.name, user_path(top_user) %>: <%=  top_user.reviews_count%></p>
     <% end %>
   </div>
