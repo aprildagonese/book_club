@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe 'book_show_page' do
-  it "user_can_see_book_data" do
+describe 'on a book show page' do
+  it "user can see the book's data" do
     author_1 = Author.create(name: "Jon Doe")
     author_2 = Author.create(name: "Jane Doe")
     book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
@@ -21,7 +21,7 @@ describe 'book_show_page' do
     expect(page).to_not have_xpath("//img[contains(@src,'#{File.basename(book_2.cover_image)}')]")
   end
 
-  it "user_can_see_review_data" do
+  it "user can see review data" do
     author_1 = Author.create(name: "Jon Doe")
     book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1], cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg")
     april = User.create(name: "April")
@@ -47,5 +47,28 @@ describe 'book_show_page' do
     end
   end
 
+  it "user can delete a book" do
+    author_1 = Author.create(name: "Jon Doe")
+    book_1 = Book.create(title: "Book 1 Title", length: 111, year: 1111, authors: [author_1])
+    book_2 = Book.create(title: "Book 2 Title", length: 222, year: 2222, authors: [author_1])
+    april = User.create(name: "April")
+    rene = User.create(name: "Rene")
+    review_1 = Review.create(title: "Review 1", description: "I liked this book", user: april, rating: 5, book: book_1)
+    review_2 = Review.create(title: "Review 2", description: "I didn't like this book", user: rene, rating: 1, book: book_1)
+    review_3 = Review.create(title: "Review 3", description: "This book was ok", user: rene, rating: 3, book: book_2)
+
+    expect(Author.count).to eq(1)
+    expect(Book.count).to eq(2)
+    expect(User.count).to eq(2)
+    expect(Review.count).to eq(3)
+
+    visit book_path(book_1)
+    click_on("Delete This Book")
+
+    expect(Author.count).to eq(1)
+    expect(Book.count).to eq(1)
+    expect(User.count).to eq(2)
+    expect(Review.count).to eq(1)
+  end
 
 end
