@@ -20,19 +20,19 @@
   <div class="statistics-column-1">
     <h4 class="column_title">Top Rated Books</h4>
     <% @books.three_top_or_bottom_rated("DESC").each do |top_book| %>
-      <p><%= top_book.title %>: <%=  top_book.average_rating%></p>
+      <p><%= link_to top_book.title, book_path(top_book) %>: <%=  top_book.average_rating%></p>
     <% end %>
   </div>
   <div class="statistics-column-2">
     <h4 class="column-title">Lowest Rated Books</h4>
     <% @books.three_top_or_bottom_rated("ASC").each do |bottom_book| %>
-      <p><%= bottom_book.title %>: <%=  bottom_book.average_rating%></p>
+      <p><%= link_to bottom_book.title, book_path(bottom_book) %>: <%=  bottom_book.average_rating%></p>
     <% end %>
   </div>
   <div class="statistics-column-3">
     <h4 class="column-title">Users With Most Reviews</h4>
     <% User.top_three_reviewers.each do |top_user| %>
-      <p><%= top_user.name %>: <%=  top_user.reviews_count%></p>
+      <p><%= link_to top_user.name, user_path(top_user) %>: <%=  top_user.reviews_count%></p>
     <% end %>
   </div>
 </footer>

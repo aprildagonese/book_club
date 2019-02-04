@@ -24,6 +24,10 @@ require 'rspec/rails'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
+
+require 'simplecov'
+SimpleCov.start 'rails'
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
@@ -38,7 +42,7 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-DatabaseCleaner.strategy = :truncation
+# DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -69,11 +73,11 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
- config.before(:all) do
-   DatabaseCleaner.clean
- end
-
- config.after(:each) do
-   DatabaseCleaner.clean
- end
+  # config.before(:all) do
+  #   DatabaseCleaner.clean
+  # end
+  #
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
 end
