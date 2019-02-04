@@ -131,6 +131,7 @@ RSpec.describe Book, type: :model do
 
         expect(book_1.three_top_or_bottom_reviews("DESC")).to include(review_4, review_1, review_3)
         expect(book_1.three_top_or_bottom_reviews("ASC")).to include(review_2, review_7, review_6)
+        expect(book_1.average_rating).to eq(2.9)
       end
     end
   end
