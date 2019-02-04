@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    binding.pry
     @book = Book.new(merged_params)
     @book.authors = params[:book][:authors].split(",").map do |author|
       Author.find_or_create_by(name: author.titleize.strip)
