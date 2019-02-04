@@ -73,5 +73,4 @@ describe 'author show page' do
       end
     end
   end
-
 end
