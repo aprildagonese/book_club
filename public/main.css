@@ -1,3 +1,7 @@
+body {
+  color: #696969;
+}
+
 .index-cover {
   height: 250px;
   width: auto
@@ -15,10 +19,6 @@
   display: inline-flex
 }
 
-.book-data {
-  display: inline-grid
-}
-
 .index-header {
   display: flex;
   justify-content: space-between !important;
@@ -27,16 +27,49 @@
 .links {
   display: flex;
   justify-content: space-between !important;
-  vertical-align: middle !important;
-  padding-top: 35px;
-  padding-right: 15px
+  align-items: center;
+  color: gray;
 }
 
 .link {
-  padding-right: 15px
+  margin: 0;
 }
 
-.author-book-section {
-  display: flex !important;
-  justify-content: space-around !important;
+.author-book-section .book-data {
+  display: inline-block;
+  margin-top: 20;
+}
+
+.author-book-section .top-review {
+  width: 45%
+}
+
+.panel-body .author-book-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dd-sort {
+  background: chartreuse;
+  display: flex;
+  justify-content: space-between;
+  align-items: right
+}
+
+.dropdown-menu {
+  min-width: 120px !important;
+}
+
+.dropdown-item {
+  padding-left: 5px !important;
+}
+
+.panel-body {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.author-book-section .book-data #length-line {
+  margin-top: 20px;
 }

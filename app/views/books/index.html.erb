@@ -1,20 +1,25 @@
+
 <!---Header/link panel--->
 <header class="index-header">
   <h1>All Books</h1>
   <div class="links">
     <p class="link"><%= link_to 'Add a New Book', new_book_path %></p>
+    <!---Drowndown Sort Menu--->
+    <div class="dropdown  dd-sort">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort Books
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/books?column=average_rating&direction=DESC">Highest Rated</a><br/>
+        <a class="dropdown-item" href="/books?column=average_rating&direction=ASC">Lowest Rated</a><br/>
+        <a class="dropdown-item" href="/books?column=length&direction=ASC">Shortest First</a><br/>
+        <a class="dropdown-item" href="/books?column=length&direction=DESC">Longest First</a><br/>
+        <a class="dropdown-item" href="/books?column=reviews_count&direction=DESC">Most Reviewed</a><br/>
+        <a class="dropdown-item" href="/books?column=reviews_count&direction=ASC">Least Reviewed</a>
+      </div>
+    </div>
   </div>
 </header>
-
-<div class="sort-menu">
-  <h3>Sort by:</h3>
-  <a href="/books?column=average_rating&direction=ASC" >Average Rating - ascending</a>
-  <a href="/books?column=average_rating&direction=DESC" >Average Rating - descending</a>
-  <a href="/books?column=length&direction=ASC" >Number of Pages - ascending</a>
-  <a href="/books?column=length&direction=DESC" >Number of Pages - descending</a>
-  <a href="/books?column=reviews_count&direction=ASC" >Number of Reviews - ascending</a>
-  <a href="/books?column=reviews_count&direction=DESC" >Number of Reviews - descending</a>
-</div>
 
 <!---Book Panels--->
 <div class="col-sm-8">
@@ -31,7 +36,7 @@
           <div class="book-data container-fluid">
             <p>Average Rating: <%= book.average_rating %></p>
             <p>Total Reviews: <%= book.total_reviews %></p>
-            <p>Length: <%= book.length %> </p>
+            <p>Length: <%= book.length %> pages</p>
             <p>Year: <%= book.year %> </p>
             <p>Author(s): <% book.authors.each do |author| %> </p>
               <p><a href=<%=author_path(author)%> ><%= author.name %></a></p>
