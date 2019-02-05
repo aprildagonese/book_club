@@ -172,8 +172,8 @@ RSpec.describe Book, type: :model do
 
         expect(Book.sort_books_by_avg_rating("ASC")).to eq([book_3,book_6,book_4,book_1,book_5,book_2])
         expect(Book.sort_books_by_avg_rating("DESC")).to eq([book_2,book_5,book_1,book_4,book_6,book_3])
-        expect(Book.sort_by("length", "ASC")).to eq([book_2,book_5,book_4,book_6,book_1,book_3])
-        expect(Book.sort_by("length", "DESC")).to eq([book_3,book_1,book_6,book_4,book_5,book_2])
+        expect(Book.sort_by_length("ASC")).to eq([book_2,book_5,book_4,book_6,book_1,book_3])
+        expect(Book.sort_by_length("DESC")).to eq([book_3,book_1,book_6,book_4,book_5,book_2])
         expect(Book.sort_by("reviews_count", "ASC")).to eq([book_3,book_2,book_6,book_5,book_1,book_4])
         expect(Book.sort_by("reviews_count", "DESC")).to eq([book_4,book_1,book_5,book_6,book_2,book_3])
       end

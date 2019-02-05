@@ -39,4 +39,8 @@ class Book < ApplicationRecord
     reviews.max_by(&:rating)
   end
 
+  def self.sort_by_length(direction)
+    order("length #{direction}")
+  end
+
 end
