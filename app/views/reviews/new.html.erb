@@ -1,3 +1,7 @@
+</br>
+</br>
+</br>
+</br>
 <% if @review.errors %>
 <ul id="errors">
   <% @review.errors.full_messages.each do |message| %>
@@ -8,13 +12,13 @@
 
 <%= form_for [@book, @review] do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, required: true  %>
 
   <%= f.label :rating %>
-  <%= f.number_field :rating %>
+  <%= f.number_field :rating, required: true  %>
 
   <%= f.label :description %>
-  <%= f.text_field :description %>
+  <%= f.text_field :description, required: true  %>
 
   <%= f.label :user %>
   <%= f.text_field :user, required: true %>
