@@ -53,13 +53,13 @@
       <footer class ="statistics-footer">
         <div class="statistics-column-1">
           <h4 class="column_title">Top Rated Books</h4>
-          <% @books.three_top_or_bottom_rated("DESC").each do |top_book| %>
+          <% @books.sort_books_by("average_rating", "DESC", 3).each do |top_book| %>
             <p><%= link_to top_book.title, book_path(top_book) %>: <%=  top_book.average_rating%></p>
           <% end %>
         </div>
         <div class="statistics-column-2">
           <h4 class="column-title">Lowest Rated Books</h4>
-          <% @books.three_top_or_bottom_rated("ASC").each do |bottom_book| %>
+          <% @books.sort_books_by("average_rating", "ASC", 3).each do |bottom_book| %>
             <p><%= link_to bottom_book.title, book_path(bottom_book) %>: <%=  bottom_book.average_rating%></p>
           <% end %>
         </div>
