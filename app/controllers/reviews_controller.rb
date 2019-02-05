@@ -10,14 +10,12 @@ class ReviewsController < ApplicationController
     @review = @book.reviews.create(title: review_params[:title], user: @user, rating: review_params[:rating], description: review_params[:description] )
 
     if @review.save
+      flash[:success] = "Your review has been saved."
       redirect_to book_path(@book)
     else
-      render :new
+      flash[:alert] = "Your review could not be saved. Please enter all required fields."
+      redirect_to new_book_review_path(@book)
     end
-  end
-
-  def edit
-    @review = Review.find(params[:id])
   end
 
   def destroy

@@ -107,4 +107,18 @@ describe 'on the new book page' do
     end
   end
 
+  context 'when a new book is not correctly saved' do
+    it 'user sees a flash alert' do
+      visit new_book_path
+
+      fill_in :book_title, with: "Sense and Sensibility"
+      fill_in :book_length, with: 352
+      fill_in :book_authors, with: "Jane Austen"
+
+      click_on "Create Book"
+
+      expect(page).to have_content("Your book could not be saved.")
+    end
+  end
+
 end
