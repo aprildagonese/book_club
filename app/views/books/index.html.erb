@@ -1,6 +1,10 @@
-<h1>All Books</h1>
-
-<%= link_to 'Add a New Book', new_book_path %>
+<!---Header/link panel--->
+<header class="index-header">
+  <h1>All Books</h1>
+  <div class="links">
+    <p class="link"><%= link_to 'Add a New Book', new_book_path %></p>
+  </div>
+</header>
 
 <div class="sort-menu">
   <h3>Sort by:</h3>
@@ -12,39 +16,60 @@
   <a href="/books?column=reviews_count&direction=DESC" > Number of Reviews - descending</a>
 </div>
 
-<% @books.each do |book| %>
-<section id="book-<%=book.id%>">
-  <h2>Title: <%= link_to book.title, book_path(book) %></h2>
-  <h2>Average Rating: <%= book.average_rating %></h2>
-  <h2>Total Reviews: <%= book.total_reviews %></h2>
-  <h2>Length: <%= book.length %> </h2>
-  <h2>Year: <%= book.year %> </h2>
-  <h2>Author(s): <% book.authors.each do |author| %> </h2>
-    <h2><a href=<%=author_path(author)%> ><%= author.name %></a></h2>
+<!---Book Panels--->
+<div class="col-sm-8">
+  <% @books.each do |book| %>
+    <section class="row" id="book-<%=book.id%>">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong id="book-header"><%= link_to book.title, book_path(book) %></strong>
+        </div>
+        <div class="panel-body">
+          <div class="book-image container-fluid">
+            <img class="index-cover" src=" <%= book.cover_image %>" alt=" <%= book.title %> image">
+          </div>
+          <div class="book-data container-fluid">
+            <p>Average Rating: <%= book.average_rating %></p>
+            <p>Total Reviews: <%= book.total_reviews %></p>
+            <p>Length: <%= book.length %> </p>
+            <p>Year: <%= book.year %> </p>
+            <p>Author(s): <% book.authors.each do |author| %> </p>
+              <p><a href=<%=author_path(author)%> ><%= author.name %></a></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
   <% end %>
-  <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
-</section>
-<% end %>
+</div>
 
-
-
-<footer class ="statistics-footer">
-  <div class="statistics-column-1">
-    <h4 class="column_title">Top Rated Books</h4>
-    <% @books.sort_books_by("average_rating", "DESC", 3).each do |top_book| %>
-      <p><%= link_to top_book.title, book_path(top_book) %>: <%=  top_book.average_rating%></p>
-    <% end %>
+<!---Right-side Stats Panel--->
+<div class="col-sm-4">
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+      <strong id="book-header">Book Stats</strong>
+    </div>
+    <div class="panel panel-body">
+      <footer class ="statistics-footer">
+        <div class="statistics-column-1">
+          <h4 class="column_title">Top Rated Books</h4>
+          <% @books.three_top_or_bottom_rated("DESC").each do |top_book| %>
+            <p><%= link_to top_book.title, book_path(top_book) %>: <%=  top_book.average_rating%></p>
+          <% end %>
+        </div>
+        <div class="statistics-column-2">
+          <h4 class="column-title">Lowest Rated Books</h4>
+          <% @books.three_top_or_bottom_rated("ASC").each do |bottom_book| %>
+            <p><%= link_to bottom_book.title, book_path(bottom_book) %>: <%=  bottom_book.average_rating%></p>
+          <% end %>
+        </div>
+        <div class="statistics-column-3">
+          <h4 class="column-title">Users With Most Reviews</h4>
+          <% @users.top_three_reviewers.each do |top_user| %>
+            <p><%= link_to top_user.name, user_path(top_user) %>: <%=  top_user.reviews_count%></p>
+          <% end %>
+        </div>
+      </footer>
+    </div>
   </div>
-  <div class="statistics-column-2">
-    <h4 class="column-title">Lowest Rated Books</h4>
-    <% @books.sort_books_by("average_rating", "ASC", 3).each do |bottom_book| %>
-      <p><%= link_to bottom_book.title, book_path(bottom_book) %>: <%=  bottom_book.average_rating%></p>
-    <% end %>
-  </div>
-  <div class="statistics-column-3">
-    <h4 class="column-title">Users With Most Reviews</h4>
-    <% @users.top_three_reviewers.each do |top_user| %>
-      <p><%= link_to top_user.name, user_path(top_user) %>: <%=  top_user.reviews_count%></p>
-    <% end %>
-  </div>
-</footer>
+</div>

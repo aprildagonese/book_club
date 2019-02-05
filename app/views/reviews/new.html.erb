@@ -6,18 +6,23 @@
 </ul>
 <% end %>
 
+<!---Header/link panel--->
+<header class="index-header">
+  <h1>Add a New Review for <%= @book.title %></h1>
+</header>
+
 <%= form_for [@book, @review] do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, required: true  %>
 
   <%= f.label :rating %>
-  <%= f.number_field :rating %>
+  <%= f.number_field :rating, required: true  %>
 
   <%= f.label :description %>
-  <%= f.text_field :description %>
+  <%= f.text_field :description, required: true  %>
 
   <%= f.label :user %>
-  <%= f.text_field :user %>
+  <%= f.text_field :user, required: true %>
 
   <%= f.submit %>
 <% end %>

@@ -1,4 +1,10 @@
-<h1><%= @author.name %></h1>
+<!---Header/link panel--->
+<header class="index-header">
+  <h1><%= @author.name %></h1>
+  <div class="links">
+    <p class="link"><%= link_to 'Delete This Author', author_path(@author), method: :delete %></p>
+  </div>
+</header>
 
 <% @author.books.each do |book| %>
   <section id="book-<%=book.id%>">
@@ -21,5 +27,3 @@
     <p><img src=" <%= book.cover_image %>" alt=" <%= book.title %> image"></p>
   </section>
 <% end %>
-
-<%= link_to 'Delete This Author', author_path(@author), method: :delete %>

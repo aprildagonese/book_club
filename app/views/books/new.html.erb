@@ -6,21 +6,27 @@
 </ul>
 <% end %>
 
+<!---Header/link panel--->
+<header class="index-header">
+  <h1>Add a New Book</h1>
+</header>
+
+
 <%= form_for @book do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, required: true %>
 
   <%= f.label :length %>
-  <%= f.number_field :length %>
+  <%= f.number_field :length, required: true %>
 
   <%= f.label :year %>
-  <%= f.number_field :year %>
+  <%= f.number_field :year, required: true  %>
 
   <%= f.label :cover_image%>
   <%= f.text_field :cover_image %>
 
   <%= f.label :authors %>
-  <%= f.text_field :authors %>
+  <%= f.text_field :authors, required: true  %>
 
   <%= f.submit %>
 <% end %>

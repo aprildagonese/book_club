@@ -1,25 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BookClub</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/main.css">
   </head>
 
-  <header class="nav-bar">
-    <%= link_to 'Home', root_path %>
-    <%= link_to 'All Books', books_path %>
-  </header>
-
   <body>
-      <div class="container">
+    <div class="container full-body">
+      <div class="alert"</div>
         <% flash.each do |key, value| %>
-          <div class="alert-<%= key %>"><%= value %></div>
+          <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
       </div>
-      <%= yield %>
-
-    </body>
+      <div class="container-fluid">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <div class="navbar-brand">BookClub</div>
+            </div>
+            <ul class="nav navbar-nav nav-bar">
+              <li><%= link_to 'Home', root_path %></li>
+              <li><%= link_to 'All Books', books_path %></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container-fluid yield">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

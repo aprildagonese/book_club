@@ -1,4 +1,12 @@
-<h1> <%= @book.title %></h1>
+<!---Header/link panel--->
+<header class="index-header">
+  <h1><%= @book.title %></h1>
+  <div class="links">
+    <p class="link"><%= link_to 'Add a New Review', new_book_review_path(@book) %></p>
+    <p class="link"><%= link_to 'Delete This Book', book_path(@book), method: :delete %></p>
+  </div>
+</header>
+
 <h2>Length: <%= @book.length %> </h2>
 <h2>Year: <%= @book.year %> </h2>
 <h2>Author(s): <% @book.authors.each do |author| %> <br/><a href=<%=author_path(author)%>><%= author.name %></a><% end %></h2>
@@ -13,9 +21,6 @@
     <h2>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></h2>
   </section>
 <% end %>
-
-<%= link_to 'Add a New Review', new_book_review_path(@book) %>
-<%= link_to 'Delete This Book', book_path(@book), method: :delete %>
 
 <footer class ="statistics-footer">
   <div class="statistics-column-1">

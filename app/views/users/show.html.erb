@@ -1,9 +1,11 @@
-<h1> <%= @user.name %></h1>
-
-<h1>Reviews</h1>
-
-<%= link_to 'Newest First', user_path(user: @user, sort: 'desc') %>
-<%= link_to 'Oldest First', user_path(user: @user, sort: 'asc') %>
+<!---Header/link panel--->
+<header class="index-header">
+  <h1><%=@user.name%>'s Reviews</h1>
+  <div class="links">
+    <div class="link"><%= link_to 'Newest First', user_path(user: @user, sort: 'desc') %></div>
+    <div class="link"><%= link_to 'Oldest First', user_path(user: @user, sort: 'asc') %></div>
+  </div>
+</header>
 
 <% @reviews.each do |review| %>
   <section id="<%=review.title%>">
