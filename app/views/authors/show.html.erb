@@ -15,26 +15,27 @@
           <strong id="book-header"><%= link_to book.title, book_path(book) %></strong>
         </div>
         <div class="panel-body author-book-section">
-          <div class="book-image .col-sm-4">
+          <div class="book-image">
             <img class="index-cover" src=" <%= book.cover_image %>" alt=" <%= book.title %> image">
           </div>
-          <div class="book-data .col-sm-4">
-            <p>Length: <%= book.length %> </p>
+          <div class="book-data">
+            <p id="length-line">Length: <%= book.length %> </p>
             <p>Year: <%= book.year %> </p>
-            <p><% if book.authors.count > 1 %> <h2>Co-Author(s):
-              <% book.authors.each do |book_author| %></h2>
-                  <h2><%= book_author.name  if @author.name != book_author.name%></h2>
+            <p><% if book.authors.count > 1 %> Co-Author(s):
+              <% book.authors.each do |book_author| %>
+                  <%= book_author.name  if @author.name != book_author.name%>
               <% end %></p>
           <% end %>
           </div>
-          <div class="top-review .col-sm-4">
-            <% if book.reviews.count > 0 %> <h2> Highest Review:
-              <% review = book.highest_review(book.reviews) %></h2>
-              <h2>Title: <%= review.title %></h2>
-              <h2>Description: <%= review.description %></h2>
-              <h2>Rating: <%= review.rating %></h2>
-              <h2>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></h2>
-            <% else %> <h2> Be the first to <%= link_to 'review this book!', new_book_review_path(book) %></h2>
+          <div class="top-review">
+            <h3> Highest Review: </h3>
+            <% if book.reviews.count > 0 %>
+              <% review = book.highest_review(book.reviews) %>
+              <p>Title: <%= review.title %></p>
+              <p>Description: <%= review.description %></p>
+              <p>Rating: <%= review.rating %></p>
+              <p>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></p>
+            <% else %> <p> Be the first to <%= link_to 'review this book!', new_book_review_path(book) %></p>
             <% end %>
           </div>
         </div>
