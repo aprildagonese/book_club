@@ -2,6 +2,16 @@
 
 <%= link_to 'Add a New Book', new_book_path %>
 
+<div class="sort-menu">
+  <h3>Sort by:</h3>
+  <a href="/books?column=average_rating&direction=ASC" > Average Rating - ascending</a>
+  <a href="/books?column=average_rating&direction=DESC" > Average Rating - descending</a>
+  <a href="/books?column=length&direction=ASC" > Number of Pages - ascending</a>
+  <a href="/books?column=length&direction=DESC" > Number of Pages - descending</a>
+  <a href="/books?column=reviews_count&direction=ASC" > Number of Reviews - ascending</a>
+  <a href="/books?column=reviews_count&direction=DESC" > Number of Reviews - descending</a>
+</div>
+
 <% @books.each do |book| %>
 <section id="book-<%=book.id%>">
   <h2>Title: <%= link_to book.title, book_path(book) %></h2>
@@ -16,16 +26,18 @@
 </section>
 <% end %>
 
+
+
 <footer class ="statistics-footer">
   <div class="statistics-column-1">
     <h4 class="column_title">Top Rated Books</h4>
-    <% @books.three_top_or_bottom_rated("DESC").each do |top_book| %>
+    <% @books.sort_books_by("average_rating", "DESC", 3).each do |top_book| %>
       <p><%= link_to top_book.title, book_path(top_book) %>: <%=  top_book.average_rating%></p>
     <% end %>
   </div>
   <div class="statistics-column-2">
     <h4 class="column-title">Lowest Rated Books</h4>
-    <% @books.three_top_or_bottom_rated("ASC").each do |bottom_book| %>
+    <% @books.sort_books_by("average_rating", "ASC", 3).each do |bottom_book| %>
       <p><%= link_to bottom_book.title, book_path(bottom_book) %>: <%=  bottom_book.average_rating%></p>
     <% end %>
   </div>

@@ -23,12 +23,20 @@ class Book < ApplicationRecord
     reviews.count
   end
 
-  def self.three_top_or_bottom_rated(direction)
+  def self.sort_books_by(column, direction, number = Book.count)
+    if column == "length"
+      order("#{column} #{direction}")
+    else
+      Book.sort_by_review(column, direction, number)
+    end
+  end
+
+  def self.sort_by_review(column, direction, number)
     Book.joins(:reviews)
-    .select('books.*, avg(reviews.rating) as average_rating')
+    .select('books.*, avg(reviews.rating) as average_rating, count(reviews) as reviews_count')
     .group("id")
-    .order("average_rating #{direction}")
-    .limit(3)
+    .order("#{column} #{direction}, title")
+    .limit(number)
   end
 
   def three_top_or_bottom_reviews(direction)
@@ -39,4 +47,7 @@ class Book < ApplicationRecord
     reviews.max_by(&:rating)
   end
 
+  def self.sort_by_length(direction)
+    order("length #{direction}")
+  end
 end
