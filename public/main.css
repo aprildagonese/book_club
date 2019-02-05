@@ -1,3 +1,7 @@
+.body {
+  color: gray;
+}
+
 .index-cover {
   height: 250px;
   width: auto
@@ -27,16 +31,30 @@
 .links {
   display: flex;
   justify-content: space-between !important;
-  vertical-align: middle !important;
-  padding-top: 35px;
-  padding-right: 15px
+  align-items: center;
+  color: gray;
 }
 
 .link {
-  padding-right: 15px
+  margin: 0;
 }
 
 .author-book-section {
   display: flex !important;
   justify-content: space-around !important;
+}
+
+.dd-sort {
+  background: chartreuse;
+  display: flex;
+  justify-content: space-between;
+  align-items: right
+}
+
+.dropdown-menu {
+  min-width: 120px !important;
+}
+
+.dropdown-item {
+  padding-left: 5px !important;
 }
