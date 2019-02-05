@@ -88,8 +88,8 @@ RSpec.describe Book, type: :model do
         review_12 = book_8.reviews.create(title: "Review 13", description: "akdjkulyrh jkdhk", user: jennica, rating: 2)
 
 
-        expect(Book.sort_books_by_avg_rating("DESC", 3)).to include(book_7,book_2,book_6)
-        expect(Book.sort_books_by_avg_rating("ASC", 3)).to include(book_3, book_4, book_8)
+        expect(Book.sort_books_by("average_rating", "DESC", 3)).to include(book_7,book_2,book_6)
+        expect(Book.sort_books_by("average_rating", "ASC", 3)).to include(book_3, book_4, book_8)
       end
 
       it "should find the highest review for a book" do
@@ -170,12 +170,12 @@ RSpec.describe Book, type: :model do
         review_11 = book_5.reviews.create(title: "Review 11", description: "ef lDFH LKHDLjkhd", user: april, rating: 4)
         review_12 = book_6.reviews.create(title: "Last Review", description: "akdjkulyrh jkdhk", user: jennica, rating: 2)
 
-        expect(Book.sort_books_by_avg_rating("ASC")).to eq([book_3,book_6,book_4,book_1,book_5,book_2])
-        expect(Book.sort_books_by_avg_rating("DESC")).to eq([book_2,book_5,book_1,book_4,book_6,book_3])
-        expect(Book.sort_by_length("ASC")).to eq([book_2,book_5,book_4,book_6,book_1,book_3])
-        expect(Book.sort_by_length("DESC")).to eq([book_3,book_1,book_6,book_4,book_5,book_2])
-        expect(Book.sort_by("reviews_count", "ASC")).to eq([book_3,book_2,book_6,book_5,book_1,book_4])
-        expect(Book.sort_by("reviews_count", "DESC")).to eq([book_4,book_1,book_5,book_6,book_2,book_3])
+        expect(Book.sort_books_by("average_rating", "ASC")).to eq([book_3,book_6,book_4,book_1,book_5,book_2])
+        expect(Book.sort_books_by("average_rating", "DESC")).to eq([book_2,book_5,book_1,book_4,book_6,book_3])
+        expect(Book.sort_books_by("length", "ASC")).to eq([book_2,book_5,book_4,book_6,book_1,book_3])
+        expect(Book.sort_books_by("length", "DESC")).to eq([book_3,book_1,book_6,book_4,book_5,book_2])
+        expect(Book.sort_books_by("reviews_count", "ASC")).to eq([book_2,book_3,book_6,book_5,book_1,book_4])
+        expect(Book.sort_books_by("reviews_count", "DESC")).to eq([book_4,book_1,book_5,book_2,book_3,book_6])
       end
     end
   end

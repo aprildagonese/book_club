@@ -23,11 +23,19 @@ class Book < ApplicationRecord
     reviews.count
   end
 
-  def self.sort_books_by_avg_rating(direction, number = Book.count)
+  def self.sort_books_by(column, direction, number = Book.count)
+    if column == "length"
+      order("#{column} #{direction}")
+    else
+      Book.sort_by_review(column, direction, number)
+    end
+  end
+
+  def self.sort_by_review(column, direction, number)
     Book.joins(:reviews)
-    .select('books.*, avg(reviews.rating) as avg_rating')
+    .select('books.*, avg(reviews.rating) as average_rating, count(reviews) as reviews_count')
     .group("id")
-    .order("avg_rating #{direction}")
+    .order("#{column} #{direction}, title")
     .limit(number)
   end
 
@@ -42,5 +50,4 @@ class Book < ApplicationRecord
   def self.sort_by_length(direction)
     order("length #{direction}")
   end
-
 end
