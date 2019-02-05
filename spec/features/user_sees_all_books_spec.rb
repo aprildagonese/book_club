@@ -21,7 +21,7 @@ describe 'the books index' do
     expect(page).to have_link("Add a New Book", href: new_book_path)
 
     within "#book-#{book_1.id}" do
-      expect(page).to have_content("Title: Book 1 Title")
+      expect(page).to have_content("Book 1 Title")
       expect(page).to have_link("#{book_1.title}", href: book_path(book_1))
       expect(page).to have_content("Average Rating: 2.5")
       expect(page).to have_content("Total Reviews: 2")
