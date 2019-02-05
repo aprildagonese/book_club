@@ -23,12 +23,12 @@ class Book < ApplicationRecord
     reviews.count
   end
 
-  def self.three_top_or_bottom_rated(direction)
+  def self.sort_books_by_avg_rating(direction, number = Book.count)
     Book.joins(:reviews)
     .select('books.*, avg(reviews.rating) as avg_rating')
     .group("id")
     .order("avg_rating #{direction}")
-    .limit(3)
+    .limit(number)
   end
 
   def three_top_or_bottom_reviews(direction)
