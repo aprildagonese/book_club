@@ -105,4 +105,60 @@ describe 'the books index' do
       end
     end
   end
+
+  context "when user clicks on sort by Average Rating ascending" do
+    it "can sort books by average rating in ascending order" do
+
+        author_1 = Author.create(name: "John Smith")
+        author_2 = Author.create(name: "Jane Doe")
+        author_3 = Author.create(name: "Maria Calix")
+        author_4 = Author.create(name: "Don Johnson")
+
+
+        book_1 = Book.create(title: "Book1", length: 500, year: 1111, cover_image: "https://images-na.ssl-images-amazon.com/images/I/51jNORv6nQL._SX340_BO1,204,203,200_.jpg", authors: [author_1])
+        book_2 = Book.create(title: "Book2", length: 100, year: 2222, cover_image: "http://bookriotcom.c.presscdn.com/wp-content/uploads/2014/08/HP_hc_new_2-e1407533769415.jpeg", authors: [author_2])
+        book_3 = Book.create(title: "Book3", length: 600, year: 3333, cover_image: "http://bookriotcom.c.presscdn.com/wp-content/uploads/2014/08/HP_hc_new_2-e1407533769415.jpeg", authors: [author_3])
+        book_4 = Book.create(title: "Book4", length: 300, year: 4444, cover_image: "http://bookriotcom.c.presscdn.com/wp-content/uploads/2014/08/HP_hc_new_2-e1407533769415.jpeg", authors: [author_4])
+        book_5 = Book.create(title: "Book5", length: 200, year: 5555, cover_image: "http://bookriotcom.c.presscdn.com/wp-content/uploads/2014/08/HP_hc_new_2-e1407533769415.jpeg", authors: [author_1])
+        book_6 = Book.create(title: "Book6", length: 400, year: 6666, cover_image: "http://bookriotcom.c.presscdn.com/wp-content/uploads/2014/08/HP_hc_new_2-e1407533769415.jpeg", authors: [author_2])
+
+        april = User.create(name: "April")
+        rene = User.create(name: "Rene")
+        ian = User.create(name: "Ian")
+        megan = User.create(name: "Megan")
+        jennica = User.create(name: "Jennica")
+
+
+        review_1 = book_1.reviews.create(title: "Review 1", description: "I liked this book", user: april, rating: 4)
+        review_2 = book_1.reviews.create(title: "Review 2", description: "so so", user: rene, rating: 1)
+        review_3 = book_1.reviews.create(title: "Review 3", description: "Wow!", user: ian, rating: 4)
+        review_4 = book_2.reviews.create(title: "Review 4", description: "As good as it gets!", user: rene, rating: 5)
+        review_5 = book_3.reviews.create(title: "Review 5", description: "Mixed feelings", user: jennica, rating:1)
+        review_6 = book_4.reviews.create(title: "Review 6", description: "dfdfgsgfdgsggs", user: jennica, rating: 2)
+        review_7 = book_4.reviews.create(title: "Review 7", description: "gsfgfgdsgsgfsgs", user: april, rating: 1)
+        review_8 = book_4.reviews.create(title: "Review 8", description: "sgd hdfhsghf thshh", user: rene, rating: 3)
+        review_9 = book_4.reviews.create(title: "Review 9", description: "hhaddh lhhfjklae", user: jennica, rating: 3)
+        review_10 = book_5.reviews.create(title: "Review 10", description: ";kdhualhfjlajfk", user: megan, rating: 5)
+        review_11 = book_5.reviews.create(title: "Review 11", description: "ef lDFH LKHDLjkhd", user: april, rating: 4)
+        review_12 = book_6.reviews.create(title: "Last Review", description: "akdjkulyrh jkdhk", user: jennica, rating: 2)
+
+        visit books_path
+        click_on "Average Rating - ascending"
+
+        elements = all('#Book1, #Book2, #Book3, #Book4, #Book5, #Book6');
+        expect(elements[0]['id']).to eql("Book3");
+        expect(elements[1]['id']).to eql('Book6');
+        expect(elements[2]['id']).to eql('Book4');
+        expect(elements[3]['id']).to eql('Book1');
+        expect(elements[4]['id']).to eql('Book5');
+        expect(elements[5]['id']).to eql('Book2');
+      end
+
+          # expect(all).to eq([book_3,book_6,book_4,book_1,book_5,book_2])
+          # expect(Book.sort_books_by("average_rating", "DESC")).to eq([book_2,book_5,book_1,book_4,book_6,book_3])
+          # expect(Book.sort_books_by("length", "ASC")).to eq([book_2,book_5,book_4,book_6,book_1,book_3])
+          # expect(Book.sort_books_by("length", "DESC")).to eq([book_3,book_1,book_6,book_4,book_5,book_2])
+          # expect(Book.sort_books_by("reviews_count", "ASC")).to eq([book_2,book_3,book_6,book_5,book_1,book_4])
+          # expect(Book.sort_books_by("reviews_count", "DESC")).to eq([book_4,book_1,book_5,book_2,book_3,book_6])
+  end
 end
