@@ -169,13 +169,13 @@ RSpec.describe Book, type: :model do
         review_10 = book_5.reviews.create(title: "Review 10", description: ";kdhualhfjlajfk", user: megan, rating: 5)
         review_11 = book_5.reviews.create(title: "Review 11", description: "ef lDFH LKHDLjkhd", user: april, rating: 4)
         review_12 = book_6.reviews.create(title: "Last Review", description: "akdjkulyrh jkdhk", user: jennica, rating: 2)
-        
-        expect(Book.sort("avg_rating", "ASC")).to eq([book_7,book_2,book_6])
-        expect(Book.sort("avg_rating", "DESC")).to eq([book_7,book_2,book_6])
-        expect(Book.sort("length", "ASC")).to eq([book_7,book_2,book_6])
-        expect(Book.sort("length", "DESC")).to eq([book_7,book_2,book_6])
-        expect(Book.sort("reviews_count", "ASC")).to eq([book_7,book_2,book_6])
-        expect(Book.sort("reviews_count", "DESC")).to eq([book_7,book_2,book_6])
+
+        expect(Book.sort("avg_rating", "ASC")).to eq([book_3,book_6,book_4,book_1,book_5,book_2])
+        expect(Book.sort("avg_rating", "DESC")).to eq([book_2,book_5,book_1,book_4,book_6,book_3])
+        expect(Book.sort("length", "ASC")).to eq([book_2,book_5,book_4,book_6,book_1,book_3])
+        expect(Book.sort("length", "DESC")).to eq([book_3,book_1,book_6,book_4,book_5,book_2])
+        expect(Book.sort("reviews_count", "ASC")).to eq([book_3,book_2,book_6,book_5,book_1,book_4])
+        expect(Book.sort("reviews_count", "DESC")).to eq([book_4,book_1,book_5,book_6,book_2,book_3])
       end
     end
   end
