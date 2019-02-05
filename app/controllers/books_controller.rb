@@ -1,10 +1,14 @@
-class BooksController < ApplicationController
+  class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
   end
 
   def index
-    @books = Book.all
+    if params[:column]
+      @books = Book.sort_books_by(params[:column], params[:direction])
+    else
+      @books = Book.all
+    end
     @users = User.all
   end
 
