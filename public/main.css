@@ -35,3 +35,8 @@
 .link {
   padding-right: 15px
 }
+
+.author-book-section {
+  display: inline-flex !important;
+  justify-content: space-between !important;
+}
