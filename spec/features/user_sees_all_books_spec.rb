@@ -143,7 +143,8 @@ describe 'the books index' do
         review_12 = book_6.reviews.create(title: "Last Review", description: "akdjkulyrh jkdhk", user: jennica, rating: 2)
 
         visit books_path
-        click_on "Average Rating - ascending"
+        click_on "Sort Books"
+        click_on "Lowest Rated"
 
         elements = all('#Book1, #Book2, #Book3, #Book4, #Book5, #Book6');
         expect(elements[0]['id']).to eql("Book3");
