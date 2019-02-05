@@ -6,3 +6,32 @@
 .alert-success {
   margin-top: 75px;
 }
+
+#book-header {
+  font-size: 18px !important;
+}
+
+.book-image {
+  display: inline-flex
+}
+
+.book-data {
+  display: inline-grid
+}
+
+.index-header {
+  display: flex;
+  justify-content: space-between !important;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between !important;
+  vertical-align: middle !important;
+  padding-top: 35px;
+  padding-right: 15px
+}
+
+.link {
+  padding-right: 15px
+}
