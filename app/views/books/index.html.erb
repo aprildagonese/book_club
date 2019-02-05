@@ -6,6 +6,16 @@
   </div>
 </header>
 
+<div class="sort-menu">
+  <h3>Sort by:</h3>
+  <a href="/books?column=average_rating&direction=ASC" > Average Rating - ascending</a>
+  <a href="/books?column=average_rating&direction=DESC" > Average Rating - descending</a>
+  <a href="/books?column=length&direction=ASC" > Number of Pages - ascending</a>
+  <a href="/books?column=length&direction=DESC" > Number of Pages - descending</a>
+  <a href="/books?column=reviews_count&direction=ASC" > Number of Reviews - ascending</a>
+  <a href="/books?column=reviews_count&direction=DESC" > Number of Reviews - descending</a>
+</div>
+
 <!---Book Panels--->
 <div class="col-sm-8">
   <% @books.each do |book| %>
