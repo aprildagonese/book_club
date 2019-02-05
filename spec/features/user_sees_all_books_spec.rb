@@ -144,7 +144,6 @@ describe 'the books index' do
 
         visit books_path
         click_on "Average Rating - ascending"
-        
 
         elements = all('#Book1, #Book2, #Book3, #Book4, #Book5, #Book6');
         expect(elements[0]['id']).to eql("Book3");
