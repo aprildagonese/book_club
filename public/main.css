@@ -37,6 +37,6 @@
 }
 
 .author-book-section {
-  display: inline-flex !important;
-  justify-content: space-between !important;
+  display: flex !important;
+  justify-content: space-around !important;
 }

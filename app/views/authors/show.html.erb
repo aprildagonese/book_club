@@ -18,7 +18,7 @@
           <div class="book-image .col-sm-4">
             <img class="index-cover" src=" <%= book.cover_image %>" alt=" <%= book.title %> image">
           </div>
-          <div class="book-data container-fluid">
+          <div class="book-data .col-sm-4">
             <p>Length: <%= book.length %> </p>
             <p>Year: <%= book.year %> </p>
             <p><% if book.authors.count > 1 %> <h2>Co-Author(s):
@@ -27,7 +27,7 @@
               <% end %></p>
           <% end %>
           </div>
-          <div class="top-review container-fluid">
+          <div class="top-review .col-sm-4">
             <% if book.reviews.count > 0 %> <h2> Highest Review:
               <% review = book.highest_review(book.reviews) %></h2>
               <h2>Title: <%= review.title %></h2>
