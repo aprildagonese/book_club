@@ -12,15 +12,15 @@ describe 'author show page' do
     visit "/authors/#{@author_1.id}"
 
     expect(page).to have_content("#{@author_1.name}")
-    expect(page).to have_content("Title: #{@book_1.title}")
+    expect(page).to have_content("#{@book_1.title}")
     expect(page).to have_content("Length: #{@book_1.length}")
     expect(page).to have_content("Year: #{@book_1.year}")
     expect(page).to have_xpath("//img[contains(@src,'#{File.basename(@book_1.cover_image)}')]")
 
-    expect(page).to have_content("Title: #{@book_2.title}")
+    expect(page).to have_content("#{@book_2.title}")
     expect(page).to have_content("Length: #{@book_2.length}")
     expect(page).to have_content("Year: #{@book_2.year}")
-    expect(page).to have_content("Co-Author(s):\n#{@author_2.name}")
+    expect(page).to have_content("Co-Author(s): #{@author_2.name}")
     expect(page).to have_xpath("//img[contains(@src,'#{File.basename(@book_2.cover_image)}')]")
   end
 
