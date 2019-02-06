@@ -7,14 +7,28 @@
   </div>
 </header>
 
-<% @reviews.each do |review| %>
-  <section id="<%=review.title%>">
-    <h2>Book: <%= link_to review.book.title, book_path(review.book) %></h2>
-    <h2>Title: <%= review.title %> </h2>
-    <h2>Description: <%= review.description %> </h2>
-    <h2>Rating: <%= review.rating %> </h2>
-    <h2>Review Date: <%= review.created_at %>
-      <p><img src=" <%= review.book.cover_image %>" alt=" <%= review.book.title %> image"></p>
-    <p><%= link_to 'Delete This Review', review_path(review: review), method: :delete %></p>
-  </section>
-<% end %>
+<!---Book Reviews Panels--->
+<div class="container-fluid">
+  <% @reviews.each do |review| %>
+    <section class="row" id="<%=review.title%>">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong id="book-header"><%= link_to review.book.title, book_path(review.book) %></strong>
+        </div>
+        <div class="panel-body author-book-section">
+          <div class="book-image">
+            <img class="index-cover" src=" <%= review.book.cover_image %>" alt=" <%= review.book.title %> image">
+          </div>
+          <div class="top-review">
+            <h3> Review: </h3>
+              <p>Title: <%= review.title %></p>
+              <p>Description: <%= review.description %></p>
+              <p>Rating: <%= review.rating %></p>
+              <small>Written on <%= review.created_at.to_date.to_s %></small>
+          </div>
+        </div>
+        <p class="delete-review"><%= link_to 'Delete This Review', review_path(review: review), method: :delete %></p>
+      </div>
+    </section>
+  <% end %>
+</div>

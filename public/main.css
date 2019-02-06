@@ -22,38 +22,29 @@ body {
 .index-header {
   display: flex;
   justify-content: space-between !important;
-}
-
-.links {
-  display: flex;
-  justify-content: space-between !important;
   align-items: center;
   color: gray;
+  margin: 0
 }
 
-.link {
+.index-header .links {
+  display: flex;
+  justify-content: space-between !important;
   margin: 0;
-}
-
-.author-book-section .book-data {
-  display: inline-block;
-  margin-top: 20;
+  align-items: center;
 }
 
 .author-book-section .top-review {
   width: 45%
 }
 
+.dd-sort {
+  margin: 0
+}
+
 .panel-body .author-book-section {
   display: flex;
   justify-content: space-between;
-}
-
-.dd-sort {
-  background: chartreuse;
-  display: flex;
-  justify-content: space-between;
-  align-items: right
 }
 
 .dropdown-menu {
@@ -70,6 +61,21 @@ body {
   text-align: left;
 }
 
+#dropdownMenuButton {
+  padding: 0
+}
+
+.link {
+  margin: 0;
+  padding-left: 15px
+}
+
 .author-book-section .book-data #length-line {
   margin-top: 20px;
+}
+
+.delete-review {
+  display: grid;
+  justify-content: right;
+  margin-right: 10px
 }
