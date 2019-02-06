@@ -87,32 +87,44 @@ body {
   padding: 10px
 }
 
-.welcome-body{
+.welcome-body {
   background-image: url("images/olia-gozha-678463-unsplash.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .welcome-header{
+  display: block;
   font-size: 600%;
   margin-top: 100px;
   font-weight: bolder;
   color: #262626;
 }
 
-.quote {
-  font-style: italic;
-  font-weight: bold;
-  font-size: 180%;
-  margin-top: 70px;
+.welcome-section {
   color: black;
+  opacity:0.99;
+
+}
+
+.quote {
+  display: block;
+  font-weight: bold;
+  font-size: 150%;
+  margin-top: 35px;
+
 }
 
 .github-links{
-  padding-right: 50px;
+  display: block;
+  padding-top: 50px;
   font-size: 130%;
   font-weight: bold;
   text-align: left;
-  position: absolute;
   bottom: 0;
-  margin-bottom: 100px;
+}
+
+.btn {
+  color: #337ab7
 }
