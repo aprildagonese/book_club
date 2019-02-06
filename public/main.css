@@ -73,6 +73,10 @@ body {
   padding-left: 15px
 }
 
+#link-message {
+  padding-left: 25px
+}
+
 .author-book-section .book-data #length-line {
   margin-top: 25px;
 }
