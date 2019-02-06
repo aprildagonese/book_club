@@ -7,36 +7,77 @@
   </div>
 </header>
 
-<h2>Length: <%= @book.length %> </h2>
-<h2>Year: <%= @book.year %> </h2>
-<h2>Author(s): <% @book.authors.each do |author| %> <br/><a href=<%=author_path(author)%>><%= author.name %></a><% end %></h2>
-<p><img src=" <%= @book.cover_image %>" alt=" <%= @book.title %> image"></p>
+<!---Book Info Panel--->
+<div class="col-sm-8">
+  <div class="container-fluid">
+    <section class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong id="book-header">Book Info</strong>
+        </div>
+        <div class="panel-body author-book-section">
+          <div class="book-image">
+            <img class="index-cover" src="<%= @book.cover_image %>" alt="<%= @book.title %> image">
+          </div>
+          <div class="top-review">
+            <p>Length: <%= @book.length %> pages</p>
+            <p>Publication Year: <%= @book.year %></p>
+            <p>Author(s): <% @book.authors.each do |author| %> <br/><a href=<%=author_path(author)%>><%= author.name %></a><% end %></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div>
+    <div class="panel panel-default">
+      <div class="panel panel-heading">
+        <strong id="book-header">Book Reviews</strong>
+      </div>
+      <div>
+        <% @book.reviews.each do |review| %>
+          <section class="book-review" id="review-<%=review.id%>">
+            <p>Description: <%= review.title %> </p>
+            <p>Text: <%= review.description %> </p>
+            <p>Rating: <%= review.rating %> </p>
+            <p>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></p>
+          </section>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h1>Reviews</h1>
-<% @book.reviews.each do |review| %>
-  <section id="review-<%=review.id%>">
-    <h2>Description: <%= review.title %> </h2>
-    <h2>Text: <%= review.description %> </h2>
-    <h2>Rating: <%= review.rating %> </h2>
-    <h2>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></h2>
-  </section>
-<% end %>
+<!---Right-side Stats Panel--->
+<div class="col-sm-4">
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+      <strong id="book-header">Book Stats</strong>
+    </div>
+    <div class="panel panel-body">
+      <footer class ="statistics-footer">
+        <div class="statistics-column-1">
+          <h4 class="column_title">Top Reviews for this Book</h4>
+          <% @book.three_top_or_bottom_reviews("DESC").each do |top_review| %>
+            <p>"<%= top_review.title %>"</p>
+            <li>Rating: <%= top_review.rating %></li>
+            <li>User: <%= link_to top_review.user.name, user_path(top_review.user) %></li><br/>
+          <% end %>
+        </div>
+        <div class="statistics-column-2">
+          <h4 class="column-title">Lowest reviews for this book:</h4>
+          <% @book.three_top_or_bottom_reviews("ASC").each do |bottom_review| %>
+            <p>"<%= bottom_review.title %>"</p>
+            <li>Rating: <%= bottom_review.rating %></li>
+            <li>User: <%= link_to bottom_review.user.name, user_path(bottom_review.user) %></li><br/>
+          <% end %>
+        </div>
+        <div class="statistics-column-3">
+          <h4 class="column-title">Average Rating for this Book:</h4>
+          <p><%= @book.average_rating%></p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
 
-<footer class ="statistics-footer">
-  <div class="statistics-column-1">
-    <h4 class="column_title">Top reviews for this book:</h4>
-    <% @book.three_top_or_bottom_reviews("DESC").each do |top_review| %>
-      <p><%= top_review.title %> <%= top_review.rating %> <%= top_review.user.name %></p>
-    <% end %>
-  </div>
-  <div class="statistics-column-2">
-    <h4 class="column-title">Lowest reviews for this book:</h4>
-    <% @book.three_top_or_bottom_reviews("ASC").each do |bottom_review| %>
-      <p>\n<%= bottom_review.title %> <%= bottom_review.rating %> <%= bottom_review.user.name %></p>
-    <% end %>
-  </div>
-  <div class="statistics-column-3">
-    <h4 class="column-title">Average Rating for this Book:</h4>
-    <p><%= @book.average_rating%></p>
-  </div>
-</footer>
+<!---Reviews Panel--->
