@@ -1,3 +1,5 @@
+
+
 body {
   color: #696969;
 }
@@ -83,4 +85,34 @@ body {
 
 .book-review {
   padding: 10px
+}
+
+.welcome-body{
+  background-image: url("images/olia-gozha-678463-unsplash.jpg");
+  background-size: cover;
+}
+
+.welcome-header{
+  font-size: 600%;
+  margin-top: 100px;
+  font-weight: bolder;
+  color: #262626;
+}
+
+.quote {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 180%;
+  margin-top: 70px;
+  color: black;
+}
+
+.github-links{
+  padding-right: 50px;
+  font-size: 130%;
+  font-weight: bold;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 100px;
 }
