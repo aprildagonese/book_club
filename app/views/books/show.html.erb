@@ -67,7 +67,7 @@
           <% end %>
         </div>
         <div class="statistics-column-2">
-          <h4 class="column-title">Lowest reviews for this book:</h4>
+          <h4 class="column-title">Lowest Reviews for this Book:</h4>
           <% @book.three_top_or_bottom_reviews("ASC").each do |bottom_review| %>
             <p>"<%= bottom_review.title %>"</p>
             <li>Rating: <%= bottom_review.rating %></li>
@@ -82,5 +82,3 @@
     </div>
   </div>
 </div>
-
-<!---Reviews Panel--->

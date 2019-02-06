@@ -23,14 +23,14 @@ describe 'on the user show page' do
     expect(page).to have_content( "Book 1 Title" )
     expect(page).to have_link("#{book_1.title}", href: book_path(book_1))
     expect(page).to have_content( 5 )
-    expect(page).to have_content( "#{review_1.created_at}" )
+    expect(page).to have_content( "#{review_1.created_at.to_date.to_s}" )
 
     expect(page).to have_content( "Review 3" )
     expect(page).to have_content( "Book 2 was ok" )
     expect(page).to have_content( "Book 2 Title" )
     expect(page).to have_link("#{book_2.title}", href: book_path(book_2))
     expect(page).to have_content( 3 )
-    expect(page).to have_content( "#{review_3.created_at}" )
+    expect(page).to have_content( "#{review_3.created_at.to_date.to_s}" )
   end
   context "when the user sorts by newest first" do
     it "should have descending chronological order" do

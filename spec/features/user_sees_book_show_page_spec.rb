@@ -98,19 +98,31 @@ describe 'on a book show page' do
 
     within ".statistics-footer" do
       within ".statistics-column-1" do
-        expect(page).to have_content("Top reviews for this book:")
-        expect(page).to have_content("#{review_4.title} #{review_4.rating} #{review_4.user.name}")
-        expect(page).to have_content("#{review_1.title} #{review_1.rating} #{review_1.user.name}")
-        expect(page).to have_content("#{review_3.title} #{review_3.rating} #{review_3.user.name}")
+        expect(page).to have_content("Top Reviews for this Book")
+        expect(page).to have_content("#{review_4.title}")
+        expect(page).to have_content("#{review_4.rating}")
+        expect(page).to have_content("#{review_4.user.name}")
+        expect(page).to have_content("#{review_1.title}")
+        expect(page).to have_content("#{review_1.rating}")
+        expect(page).to have_content("#{review_1.user.name}")
+        expect(page).to have_content("#{review_3.title}")
+        expect(page).to have_content("#{review_3.rating}")
+        expect(page).to have_content("#{review_3.user.name}")
       end
       within ".statistics-column-2" do
-        expect(page).to have_content("Lowest reviews for this book:")
-        expect(page).to have_content("#{review_2.title} #{review_2.rating} #{review_2.user.name}")
-        expect(page).to have_content("#{review_7.title} #{review_7.rating} #{review_7.user.name}")
-        expect(page).to have_content("#{review_6.title} #{review_6.rating} #{review_6.user.name}")
+        expect(page).to have_content("Lowest Reviews for this Book")
+        expect(page).to have_content("#{review_2.title}")
+        expect(page).to have_content("#{review_2.rating}")
+        expect(page).to have_content("#{review_2.user.name}")
+        expect(page).to have_content("#{review_7.title}")
+        expect(page).to have_content("#{review_7.rating}")
+        expect(page).to have_content("#{review_7.user.name}")
+        expect(page).to have_content("#{review_6.title}")
+        expect(page).to have_content("#{review_6.rating}")
+        expect(page).to have_content("#{review_6.user.name}")
       end
       within ".statistics-column-3" do
-        expect(page).to have_content("Average Rating for this Book:")
+        expect(page).to have_content("Average Rating for this Book")
         expect(page).to have_content(book_1.average_rating)
       end
     end
