@@ -37,7 +37,7 @@
         <% @book.reviews.each do |review| %>
           <section class="book-review" id="review-<%=review.id%>">
             <p>Description: <%= review.title %> </p>
-            <p>Text: <%= review.description %> </p>
+            <p>Review: <%= review.description %> </p>
             <p>Rating: <%= review.rating %> </p>
             <p>User: <a href=<%=user_path(review.user)%> ><%= review.user.name %></a></p>
           </section>
