@@ -48,11 +48,12 @@ body {
 }
 
 .dropdown-menu {
-  min-width: 120px !important;
+  min-width: 125px !important;
 }
 
 .dropdown-item {
-  padding-left: 5px !important;
+  padding: 7px !important;
+
 }
 
 .panel-body {
@@ -71,11 +72,15 @@ body {
 }
 
 .author-book-section .book-data #length-line {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .delete-review {
   display: grid;
   justify-content: right;
   margin-right: 10px
+}
+
+.book-review {
+  padding: 10px
 }
